@@ -1,0 +1,10 @@
+global using System.Collections.Generic;
+global using Moq;
+global using Mytask.API.Model;
+global using Mytask.API.Services;
+global using Mytask.API.Controllers;
+global using MongoDB.Bson;
+global using Microsoft.AspNetCore.Mvc;
+global using NUnit.Framework;
+global using Task = System.Threading.Tasks.Task;
+global using Model = Mytask.API.Model;
