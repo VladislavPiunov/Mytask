@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}mytask-api:v1
     container_name: mytask-api
     build:
-      context: .
+      context: ./Services/Mytask/Mytask.API
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -17,7 +17,8 @@ services:
       - "8082:443"
     networks:
       - auth-network
-    depends_on: 
+    depends_on:
+      - config-server
       - mongodb
     volumes:
       - ~/.aspnet/https:/https:ro
