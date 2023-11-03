@@ -5,7 +5,7 @@ namespace Mytask.IntegrationTests.ExternalEnvironment;
 /// <summary>
 /// Класс для работы с внешними зависимостями
 /// </summary>
-public static class ExtEnvironment
+internal static class ExtEnvironment
 {
     /// <summary>
     /// Config server контейнер

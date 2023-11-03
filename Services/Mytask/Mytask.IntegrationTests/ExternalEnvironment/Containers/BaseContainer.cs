@@ -3,7 +3,7 @@ namespace Mytask.IntegrationTests.ExternalEnvironment.Containers;
 /// <summary>
 ///  Базовый контейнер для работы с Docker Api
 /// </summary>
-public abstract class BaseContainer
+internal abstract class BaseContainer
 {
     protected readonly DockerClient DockerClient;
     protected string? ContainerId;

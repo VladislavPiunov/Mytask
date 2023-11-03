@@ -1,11 +1,12 @@
 ﻿using Mytask.IntegrationTests.ExternalEnvironment;
-
-namespace Mytask.IntegrationTests.Hooks;
+using Mytask.IntegrationTests.Scenarios;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 
+namespace Mytask.IntegrationTests.Hooks;
+
 [Binding]
-public static class ScenarioBeforeAndAfter
+internal static class ScenarioBeforeAndAfter
 {
     /// <summary>
     /// Перед запуском тестов поднимем все необходимое окружение в докере

@@ -5,7 +5,7 @@ namespace Mytask.IntegrationTests.Helpers;
 /// <summary>
 /// Методы расширения для десериализации данных
 /// </summary>
-public static class DeserializationExtensions
+internal static class DeserializationExtensions
 {
     /// <summary>
     /// Десериализовать из HttpContent

@@ -5,7 +5,7 @@ namespace Mytask.IntegrationTests.Helpers.JwtAuthorisation.Models;
 /// <summary>
 /// Подробнее смотри https://www.rfc-editor.org/rfc/rfc7517#page-10
 /// </summary>
-public class Certificates
+internal class Certificates
 {
     /// <summary>
     /// Array of JWK values

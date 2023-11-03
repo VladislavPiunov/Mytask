@@ -11,7 +11,7 @@ namespace Mytask.IntegrationTests.Helpers.JwtAuthorisation;
 /// <summary>
 /// Билдер для создания jwt
 /// </summary>
-public class JwtTokenBuilder
+internal class JwtTokenBuilder
 {
     /// <summary>
     /// Список клеймов, которые будут добавлены в токен

@@ -1,11 +1,9 @@
-using Faq.Dtos;
-
 namespace Mytask.IntegrationTests.Scenarios;
 
 /// <summary>
 /// Класс содержит данные, которые должны передаваться между шагами в сценарии
 /// </summary>
-public static class Common
+internal static class Common
 {
     /// <summary>
     /// http ответ
@@ -13,14 +11,19 @@ public static class Common
     public static HttpResponseMessage? HttpResponseMessage { get; set; }
 
     /// <summary>
-    /// Созданная категория
+    /// Созданная доска
     /// </summary>
-    public static CategoryDto? Category { get; set; }
+    public static Board? Board { get; set; }
 
     /// <summary>
-    /// Созданный вопрос
+    /// Созданный статус
     /// </summary>
-    public static QuestionDto? Question { get; set; }
+    public static Stage? Stage { get; set; }
+
+    /// <summary>
+    /// Созданная задача
+    /// </summary>
+    public static API.Model.Task? Task { get; set; }
 
     /// <summary>
     /// токен авторизации
@@ -33,8 +36,9 @@ public static class Common
     public static void ClearState()
     {
         HttpResponseMessage = null;
-        Category = null;
-        Question = null;
+        Board = null;
+        Stage = null;
+        Task = null;
         AuthToken = null;
     }
 }

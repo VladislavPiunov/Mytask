@@ -3,7 +3,7 @@ namespace Mytask.IntegrationTests.ExternalEnvironment.Containers;
 /// <summary>
 /// Mountebank container
 /// </summary>
-public class MountebankContainer : BaseContainer
+internal class MountebankContainer : BaseContainer
 {
     // Список портов для импостеров
     private readonly List<int> _imposterPosts = new() { 8484 };

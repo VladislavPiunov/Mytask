@@ -5,7 +5,7 @@ namespace Mytask.IntegrationTests.Helpers.JwtAuthorisation.Models;
 /// <summary>
 /// Конфигурация Openid, см https://openid.net/specs/openid-connect-discovery-1_0-21.html
 /// </summary>
-public class OpenidConfiguration
+internal class OpenidConfiguration
 {
     /// <summary>
     /// URL using the https scheme with no query or fragment component that the OP asserts as its Issuer Identifier.

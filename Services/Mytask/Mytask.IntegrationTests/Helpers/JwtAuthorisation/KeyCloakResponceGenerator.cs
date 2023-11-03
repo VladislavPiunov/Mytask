@@ -1,4 +1,4 @@
-using ComponentTests.Helpers.JwtAuthorisation.Models;
+using Mytask.IntegrationTests.Helpers.JwtAuthorisation.Models;
 
 namespace Mytask.IntegrationTests.Helpers.JwtAuthorisation;
 

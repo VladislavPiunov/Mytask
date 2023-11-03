@@ -6,7 +6,7 @@ namespace Mytask.IntegrationTests.ExternalEnvironment.Containers;
 /// <summary>
 /// MongoDB container
 /// </summary>
-public class MongoDbContainer : BaseContainer
+internal class MongoDbContainer : BaseContainer
 {
     /// <summary>
     /// Конструктор

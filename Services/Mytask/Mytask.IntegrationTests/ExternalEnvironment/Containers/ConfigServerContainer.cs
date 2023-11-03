@@ -3,7 +3,7 @@
     /// <summary>
     /// Config server container
     /// </summary>
-    public class ConfigServerContainer : BaseContainer
+    internal class ConfigServerContainer : BaseContainer
     {
         /// <summary>
         /// Конструктор

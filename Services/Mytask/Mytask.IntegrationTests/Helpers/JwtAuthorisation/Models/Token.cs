@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace Mytask.IntegrationTests.Helpers.JwtAuthorisation.Models;
 
-public class Token
+internal class Token
 {
     /// <summary>
     /// The access token issued by the authorization server.
