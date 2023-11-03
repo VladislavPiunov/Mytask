@@ -17,6 +17,7 @@ services:
       - "8082:443"
     networks:
       - auth-network
+    restart: on-failure
     depends_on:
       - config-server
       - mongodb
@@ -61,9 +62,9 @@ services:
     ports:
       - '27017:27017'
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-      - MONGO_INITDB_DATABASE=mytask
+      - MONGODB_INITDB_ROOT_USERNAME=user
+      - MONGODB_INITDB_ROOT_PASSWORD=pass
+      - MONGODB_INITDB_DATABASE=mytask
     volumes:
       - type: bind
         source: ./data
@@ -73,7 +74,13 @@ services:
     image: steeltoeoss/config-server
     ports:
       - '8888:8888'
-    command: --spring.cloud.config.server.git.uri=https://github.com/VladislavPiunov/my-config.git --spring.cloud.config.server.git.default-label=main
+    command: --spring.cloud.config.server.git.uri=https://github.com/VladislavPiunov/my-config.git 
+             --spring.cloud.config.server.git.default-label=main
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8888"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
 
 networks:
   auth-network:

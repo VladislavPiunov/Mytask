@@ -15,14 +15,8 @@
         <PackageReference Include="MongoDB.Driver" Version="2.21.0" />
         <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="3.2.4" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
-
-
-
-
-
     </ItemGroup>
-
-
-
-
+    <ItemGroup>
+      <InternalsVisibleTo Include="Mytask.IntegrationTests" />
+    </ItemGroup>
 </Project>

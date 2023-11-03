@@ -1,0 +1,14 @@
+﻿global using FluentAssertions;
+global using TechTalk.SpecFlow;
+global using Xunit;
+global using System.Text.Json;
+global using Mytask.API.Model;
+global using Mytask.IntegrationTests.Repositories;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Task = System.Threading.Tasks.Task;
+global using System.Runtime.InteropServices;
+global using Docker.DotNet;
+global using Docker.DotNet.Models;
+global using MbDotNet;
+global using Microsoft.AspNetCore.TestHost;
+global using MongoDB.Driver;

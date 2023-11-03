@@ -1,10 +1,17 @@
-﻿# Main 
+﻿# Main
 .idea/
 .vscode/
-*.sln.iml
+.vs/
 node_modules/
 .angular/
 data/
+
+#Specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.iml
 
 # Build results
 [Dd]ebug/
