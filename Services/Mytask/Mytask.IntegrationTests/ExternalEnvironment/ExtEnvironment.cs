@@ -25,12 +25,12 @@ internal static class ExtEnvironment
     /// <summary>
     /// Тестовый сервер приложения
     /// </summary>
-    public static TestServer TestServer { get; set;}
+    public static TestServer TestServer { get; set; }
     
     /// <summary>
     /// Клиент для маунтбанка
     /// </summary>
-    public static MountebankClient MountebankClient { get; private set; } = new(new Uri("http://localhost:8484"));
+    public static MountebankClient MountebankClient { get; private set; } = new(new Uri("http://localhost:2525"));
 
     /// <summary>
     /// ctor

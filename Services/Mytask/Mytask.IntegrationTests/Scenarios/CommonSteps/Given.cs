@@ -3,18 +3,27 @@ using MbDotNet.Models.Stubs;
 using MbDotNet.Models;
 using Mytask.IntegrationTests.ExternalEnvironment;
 using Mytask.IntegrationTests.Helpers.JwtAuthorisation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mytask.IntegrationTests.Scenarios.CommonSteps
 {
+    [Binding]
     internal class GivenCommonStepsDefinitions
     {
-        [Given("кейклоак работает и настроен")]
+        //public JsonFilesRepository JsonFilesRepository { get; }
+
+        //private JsonSerializerOptions JsonSerializerOptions { get; } = new JsonSerializerOptions
+        //{
+        //    AllowTrailingCommas = true,
+        //    PropertyNameCaseInsensitive = true
+        //};
+
+        //public GivenCommonStepsDefinitions(JsonFilesRepository jsonFilesRepository)
+        //{
+        //    JsonFilesRepository = jsonFilesRepository;
+        //}
+
+        [Given(@"кейклоак работает и настроен")]
         public async Task KeyCloakIsWorking()
         {
             // Удалим импостер, если он уже есть
@@ -47,5 +56,27 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
                     .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetToken("myrealm", new Dictionary<string, string>())));
         }
 
+        //[Given(@"база данных имеет данные о канбан-досках")]
+        //public async Task GivenTheRepositoryHasBoardData()
+        //{
+        //    var boardsJson = JsonFilesRepository.Files["boards.json"];
+        //    var boards = JsonSerializer.Deserialize<IList<Board>>(boardsJson, JsonSerializerOptions);
+        //    var client = new MongoClient("mongodb://user:pass@localhost:27017/");
+        //    var database = client.GetDatabase("mytask");
+        //    foreach (var board in boards)
+        //    {
+        //        Stage toDo = new Stage("To Do", "#3399FF");
+        //        await database.GetCollection<Stage>("stages").InsertOneAsync(toDo);
+
+        //        Stage inProgress = new Stage("In progress", "#FFFF33");
+        //        await database.GetCollection<Stage>("stages").InsertOneAsync(inProgress);
+
+        //        Stage done = new Stage("Done", "#99FF33");
+        //        await database.GetCollection<Stage>("stages").InsertOneAsync(done);
+
+        //        board.Stages = new List<string> { toDo.Id, inProgress.Id, done.Id };
+        //        await database.GetCollection<Board>("boards").InsertOneAsync(board);
+        //    }
+        //}
     }
 }

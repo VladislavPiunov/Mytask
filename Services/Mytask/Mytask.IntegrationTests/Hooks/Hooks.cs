@@ -24,7 +24,7 @@ internal static class ScenarioBeforeAndAfter
     public static async Task BeforeScenario()
     {
         await ExtEnvironment.MongoDbContainer.DeleteAllData();
-        await ExtEnvironment.MountebankClient.DeleteImposterAsync(4501);
+        await ExtEnvironment.MountebankClient.DeleteImposterAsync(8484);
 
         Common.ClearState();
     }

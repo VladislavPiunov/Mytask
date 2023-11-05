@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
-//Add Config Server
+builder.Services.AddCors();
+// Add Config Server
 builder.Configuration.AddConfigServer();
 builder.Services.Configure<EnvireConfiguration>(builder.Configuration.GetSection("MytaskAPI"));
 // Add KeyCloak
@@ -20,7 +21,7 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration.GetSection("Key
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//Add MongoDb
+// Add MongoDb
 var provider = builder.Services.BuildServiceProvider();
 var options = provider.GetRequiredService<IOptions<EnvireConfiguration>>().Value;
 builder.Services.AddHealthChecks().AddMongoDb(options.ConnectionStrings.Mongo);
@@ -39,6 +40,10 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 // }
+
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+app.UseRouting();
 
 app.UseHttpsRedirection();
 
