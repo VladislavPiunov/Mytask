@@ -19,4 +19,9 @@
     <ItemGroup>
       <InternalsVisibleTo Include="Mytask.IntegrationTests" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
 </Project>

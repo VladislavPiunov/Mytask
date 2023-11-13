@@ -10,18 +10,6 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
     [Binding]
     internal class GivenCommonStepsDefinitions
     {
-        //public JsonFilesRepository JsonFilesRepository { get; }
-
-        //private JsonSerializerOptions JsonSerializerOptions { get; } = new JsonSerializerOptions
-        //{
-        //    AllowTrailingCommas = true,
-        //    PropertyNameCaseInsensitive = true
-        //};
-
-        //public GivenCommonStepsDefinitions(JsonFilesRepository jsonFilesRepository)
-        //{
-        //    JsonFilesRepository = jsonFilesRepository;
-        //}
 
         [Given(@"кейклоак работает и настроен")]
         public async Task KeyCloakIsWorking()
@@ -59,8 +47,14 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
         //[Given(@"база данных имеет данные о канбан-досках")]
         //public async Task GivenTheRepositoryHasBoardData()
         //{
+        //    var jsonSerializerOptions = new JsonSerializerOptions
+        //    {
+        //        AllowTrailingCommas = true,
+        //        PropertyNameCaseInsensitive = true
+        //    };
+
         //    var boardsJson = JsonFilesRepository.Files["boards.json"];
-        //    var boards = JsonSerializer.Deserialize<IList<Board>>(boardsJson, JsonSerializerOptions);
+        //    var boards = JsonSerializer.Deserialize<IList<Board>>(boardsJson, jsonSerializerOptions);
         //    var client = new MongoClient("mongodb://user:pass@localhost:27017/");
         //    var database = client.GetDatabase("mytask");
         //    foreach (var board in boards)

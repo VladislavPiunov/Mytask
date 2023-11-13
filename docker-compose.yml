@@ -58,7 +58,7 @@ services:
       - auth-network
 
   mongodb:
-    image: mongodb/mongodb-community-server
+    image: mongodb/mongodb-community-server:latest
     ports:
       - '27017:27017'
     environment:
