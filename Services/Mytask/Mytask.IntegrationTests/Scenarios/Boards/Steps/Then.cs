@@ -44,7 +44,7 @@ namespace Mytask.IntegrationTests.Scenarios.Boards.Steps
         {
             // Проверим, что ответ на запрос не пустой
             Common.HttpResponseMessage.Should().NotBeNull();
-
+            
             // Проверим, что код ответа 200
             Common.HttpResponseMessage!.StatusCode.Should().Be(HttpStatusCode.OK);
         }

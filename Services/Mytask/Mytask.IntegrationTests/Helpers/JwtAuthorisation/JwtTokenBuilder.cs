@@ -76,7 +76,7 @@ internal class JwtTokenBuilder
     /// </summary>
     public JwtTokenBuilder WithIssuer(string issuer)
     {
-        _claims.Add(new Claim("iss", $"http://localhost:4501/auth/realms/{issuer}"));
+        _claims.Add(new Claim("iss", $"http://localhost:8484/auth/realms/{issuer}"));
         return this;
     }
     

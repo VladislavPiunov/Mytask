@@ -28,8 +28,8 @@ namespace Mytask.IntegrationTests.Scenarios.Boards.Steps
             // Токен авторизации
             request.Headers.Authorization = AuthenticationHeaderValue.Parse("Bearer " + Common.AuthToken);
 
-            // Отправляем запрос и сохраняем результат }
-            Common.HttpResponseMessage = await ExtEnvironment.TestServer.CreateClient().SendAsync(request); ;
+            // Отправляем запрос и сохраняем результат 
+            Common.HttpResponseMessage = await ExtEnvironment.TestServer.CreateClient().SendAsync(request);
         }
 
         [When(@"пользователь обновляет название доски на ""([^""]*)""")]
