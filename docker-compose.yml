@@ -5,10 +5,10 @@ services:
     image: ${DOCKER_REGISTRY-}mytask-api:v1
     container_name: mytask-api
     build:
-      context: .
+      context: ./Services/Mytask/Mytask.API
       dockerfile: Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Pass@*****
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mytask.pfx
@@ -17,7 +17,9 @@ services:
       - "8082:443"
     networks:
       - auth-network
-    depends_on: 
+    restart: on-failure
+    depends_on:
+      - config-server
       - mongodb
     volumes:
       - ~/.aspnet/https:/https:ro
@@ -56,13 +58,13 @@ services:
       - auth-network
 
   mongodb:
-    image: mongodb/mongodb-community-server:6.0-ubi8
+    image: mongodb/mongodb-community-server:latest
     ports:
       - '27017:27017'
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
-      - MONGO_INITDB_DATABASE=mytask
+      - MONGODB_INITDB_ROOT_USERNAME=user
+      - MONGODB_INITDB_ROOT_PASSWORD=pass
+      - MONGODB_INITDB_DATABASE=mytask
     volumes:
       - type: bind
         source: ./data
@@ -72,7 +74,13 @@ services:
     image: steeltoeoss/config-server
     ports:
       - '8888:8888'
-    command: --spring.cloud.config.server.git.uri=https://github.com/VladislavPiunov/my-config.git --spring.cloud.config.server.git.default-label=main
+    command: --spring.cloud.config.server.git.uri=https://github.com/VladislavPiunov/my-config.git 
+             --spring.cloud.config.server.git.default-label=main
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8888"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
 
 networks:
   auth-network:

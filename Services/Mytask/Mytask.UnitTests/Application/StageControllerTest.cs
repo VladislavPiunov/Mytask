@@ -1,4 +1,4 @@
-namespace Mytask.UnitTests;
+namespace Mytask.UnitTests.Application;
 
 public class StageControllerTest
 {
