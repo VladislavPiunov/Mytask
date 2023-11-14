@@ -6,6 +6,7 @@ using Mytask.API.Services;
 namespace Mytask.API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/board")]
 public class BoardController : ControllerBase
 {
@@ -21,7 +22,6 @@ public class BoardController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
     public async Task<ActionResult<List<Board>>> GetBoardsAsync()
     {
         var userId = _identityService.GetUserIdentity();
@@ -37,7 +37,6 @@ public class BoardController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<ActionResult<Board>> CreateBoardAsync([FromBody] Board board)
     {
         board.OwnerId = _identityService.GetUserIdentity();
@@ -48,7 +47,6 @@ public class BoardController : ControllerBase
     }
 
     [HttpPut]
-    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<Board>> UpdateBoardAsync([FromBody] Board board)
      => Ok(await _boardRepository.UpdateBoardAsync(board));
@@ -56,7 +54,6 @@ public class BoardController : ControllerBase
 
     [Route("{id}")]
     [HttpDelete]
-    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<bool>> DeleteBoardAsync(string id) 
         => Ok(await _boardRepository.DeleteBoardAsync(id));
