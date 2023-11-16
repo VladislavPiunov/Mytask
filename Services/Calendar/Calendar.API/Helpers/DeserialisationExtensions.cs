@@ -1,4 +1,6 @@
-namespace Mytask.IntegrationTests.Helpers;
+using System.Text.Json;
+
+namespace Calendar.API.Helpers;
 
 /// <summary>
 /// Методы расширения для десериализации данных
