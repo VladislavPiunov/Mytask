@@ -5,4 +5,7 @@
     </div>
   </div>
   <p>qeweqweqwewq</p>
+  <div *ngFor="let board of boards$ | async">
+    <p>{{board.name}}</p>
+  </div>
 </app-layout>
