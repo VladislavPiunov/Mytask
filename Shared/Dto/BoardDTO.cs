@@ -1,4 +1,4 @@
-namespace Calendar.API.Dtos
+namespace Shared.Dto
 {
     public class BoardDTO
     {

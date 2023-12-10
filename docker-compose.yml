@@ -19,8 +19,9 @@ services:
       - auth-network
     restart: on-failure
     depends_on:
-      - config-server
       - mongodb
+      - config-server
+      - eureka    
     volumes:
       - ~/.aspnet/https:/https:ro
   
@@ -81,6 +82,12 @@ services:
         interval: 30s
         timeout: 10s
         retries: 5
+
+  eureka:
+    container_name: eureka
+    image: steeltoeoss/eureka-server
+    ports:
+      - "8761:8761"
 
 networks:
   auth-network:

@@ -1,0 +1,48 @@
+{
+  "SwaggerEndPoints": [
+    {
+      "Key": "gateway",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "gateway",
+          "Version": "v1",
+          "Url": "http://localhost:5052/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "mytask",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "mytask-service",
+          "Version": "v1",
+          "Url": "http://localhost:5052/mytask-service/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    //{
+    //  "Key": "calendar",
+    //  "TransformByOcelotConfig": true,
+    //  "Config": [
+    //    {
+    //      "Name": "calendar-service",
+    //      "Version": "v1",
+    //      "Url": "http://localhost:5052/calendar-service/swagger/v1/swagger.json"
+    //    }
+    //  ]
+    //},
+    {
+      "Key": "auth",
+      "TransformByOcelotConfig": true,
+      "Config": [
+        {
+          "Name": "auth-service",
+          "Version": "v1",
+          "Url": "http://localhost:5052/auth-service/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ]
+}
