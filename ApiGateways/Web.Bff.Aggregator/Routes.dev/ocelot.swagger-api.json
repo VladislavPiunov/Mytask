@@ -21,7 +21,7 @@
           "Url": "http://localhost:5052/mytask-service/swagger/v1/swagger.json"
         }
       ]
-    },
+    }
     //{
     //  "Key": "calendar",
     //  "TransformByOcelotConfig": true,
@@ -32,17 +32,6 @@
     //      "Url": "http://localhost:5052/calendar-service/swagger/v1/swagger.json"
     //    }
     //  ]
-    //},
-    {
-      "Key": "auth",
-      "TransformByOcelotConfig": true,
-      "Config": [
-        {
-          "Name": "auth-service",
-          "Version": "v1",
-          "Url": "http://localhost:5052/auth-service/swagger/v1/swagger.json"
-        }
-      ]
-    }
+    //}
   ]
 }
