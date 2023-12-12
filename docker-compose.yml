@@ -9,18 +9,19 @@ services:
       dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_URLS=http://+:80 #https://+:443;http://+:80
-      #- ASPNETCORE_Kestrel__Certificates__Default__Password=Pass@*****
-      #- ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mytask.pfx
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Pass@*****
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/mytask.pfx
     ports:
       - "8081:80"
-      #- "8082:443"
+      - "8082:443"
     networks:
       - auth-network
     restart: on-failure
     depends_on:
-      - config-server
       - mongodb
+      - config-server
+      - eureka    
     volumes:
       - ~/.aspnet/https:/https:ro
   
@@ -81,6 +82,12 @@ services:
         interval: 30s
         timeout: 10s
         retries: 5
+
+  eureka:
+    container_name: eureka
+    image: steeltoeoss/eureka-server
+    ports:
+      - "8761:8761"
 
 networks:
   auth-network:

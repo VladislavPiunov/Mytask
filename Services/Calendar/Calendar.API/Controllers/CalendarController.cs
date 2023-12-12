@@ -1,6 +1,6 @@
-﻿using Calendar.API.Dtos;
-using Calendar.API.Helpers;
+﻿using Calendar.API.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Dto;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;

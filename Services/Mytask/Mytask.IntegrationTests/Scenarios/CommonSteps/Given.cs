@@ -41,7 +41,7 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
             await ExtEnvironment.MountebankClient.AddHttpImposterStubAsync(8484,
                 new HttpStub()
                     .OnPathAndMethodEqual($"/auth/realms/my_realm/protocol/openid-connect/token", Method.Post)
-                    .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetToken("myrealm", new Dictionary<string, string>())));
+                    .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetToken("my_realm", new Dictionary<string, string>())));
         }
 
         //[Given(@"база данных имеет данные о канбан-досках")]
