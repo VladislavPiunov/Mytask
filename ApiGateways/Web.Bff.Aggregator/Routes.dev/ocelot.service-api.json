@@ -1,0 +1,56 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "SwaggerKey": "mytask",
+      "UseServiceDiscovery": true,
+      "ServiceName": "mytask-service",
+      "UpstreamPathTemplate": "/mytask-service/{everything}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3,
+        "DurationOfBreak": 1000,
+        "TimeoutValue": 5000
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 15
+      },
+      "LoadBalancerOptions": {
+        //"Type": "RoundRobin",
+        "Type": "LeastConnection"
+      }
+    },
+    //{
+    //  "DownstreamPathTemplate": "/{everything}",
+    //  "DownstreamScheme": "http",
+    //  "SwaggerKey": "calendar",
+    //  "UseServiceDiscovery": true,
+    //  "ServiceName": "calendar-service",
+    //  "UpstreamPathTemplate": "/calendar-service/{everything}",
+    //  "UpstreamHttpMethod": [
+    //    "GET",
+    //    "POST",
+    //    "PUT",
+    //    "DELETE"
+    //  ],
+    //  "QoSOptions": {
+    //    "ExceptionsAllowedBeforeBreaking": 3,
+    //    "DurationOfBreak": 1000,
+    //    "TimeoutValue": 5000
+    //  },
+    //  "FileCacheOptions": {
+    //    "TtlSeconds": 15
+    //  },
+    //  "LoadBalancerOptions": {
+    //    //"Type": "RoundRobin",
+    //    "Type": "LeastConnection"
+    //  }
+    //}
+  ]
+}

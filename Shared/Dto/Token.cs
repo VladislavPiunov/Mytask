@@ -1,9 +1,9 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Calendar.API.Dtos;
+namespace Shared.Dto;
 
-internal class Token
+public class Token
 {
     /// <summary>
     /// The access token issued by the authorization server.
