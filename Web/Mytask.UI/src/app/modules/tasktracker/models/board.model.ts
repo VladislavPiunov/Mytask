@@ -5,5 +5,5 @@ export class Board {
     public ownerId: string,
     public stages: string[],
     public userd: string[] 
-    ) {};
+    ) {}
 }

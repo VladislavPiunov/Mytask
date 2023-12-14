@@ -4,17 +4,17 @@ import { Router } from "@angular/router";
 import { AuthService } from "./auth.service";
 
 @Component({
-    selector: 'login',
+    selector: 'app-login',
     template: `
   <form [formGroup]="form">
       <fieldset>
           <legend>Login</legend>
           <div class="form-field">
-              <label>Username:</label>
+              <span>Username:</span>
               <input name="username" formControlName="username">
           </div>
           <div class="form-field">
-              <label>Password:</label>
+              <span>Password:</span>
               <input name="password" formControlName="password" 
                      type="password">
           </div>
@@ -44,7 +44,6 @@ import { AuthService } from "./auth.service";
               this.authService.login(val.username, val.password)
                   .subscribe(
                       () => {
-                          console.log("User is logged in");
                           this.router.navigateByUrl('/');
                       }
                   );

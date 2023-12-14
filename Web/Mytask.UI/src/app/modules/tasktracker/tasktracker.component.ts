@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from './models/board.model';
 import { Observable } from 'rxjs';
 import { TasktrackerFacade } from './tasktracker.facade';
-import { TasktrackerState } from './state/tasktracker.state';
 
 @Component({
   selector: 'app-tasktracker',
