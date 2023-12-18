@@ -1,13 +1,16 @@
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Logging;
 using MongoDB.Driver;
 using Mytask.API.Extensions.Auth;
 using Mytask.API.Model;
 using Mytask.API.Repositories;
 using Mytask.API.Services;
 using Steeltoe.Extensions.Configuration.ConfigServer;
+using Steeltoe.Discovery.Eureka;
+using Steeltoe.Discovery.Client;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -21,9 +24,19 @@ builder.Services.Configure<EnvireConfiguration>(builder.Configuration.GetSection
 // Add KeyCloak
 builder.Services.AddKeycloakAuthentication(builder.Configuration);
 
+//Add Eureka
+builder.Services.AddServiceDiscovery(o => o.UseEureka());
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "mytask",
+    });
+});
 
 // Add MongoDb
 var provider = builder.Services.BuildServiceProvider();
@@ -41,15 +54,19 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 // if (app.Environment.IsDevelopment())
 // {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    //options.RoutePrefix = string.Empty;
+});
 // }
 
 app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseRouting();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

@@ -1,0 +1,17 @@
+<div class="drawer-container">
+  <h1 id="Logo">MYTASK</h1>
+  <mat-list>
+    <div mat-subheader>Menu</div>
+    <mat-list-item matRipple *ngFor="let item of menuItems; trackBy: trackByName" routerLink="{{item.link}}">
+      <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+      <div matListItemTitle>{{item.name}}</div>
+    </mat-list-item>
+  </mat-list>
+  <mat-list>
+    <div mat-subheader>Communication</div>
+    <mat-list-item matRipple *ngFor="let item of communicationItems; trackBy: trackByName" routerLink="{{item.link}}">
+      <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+      <div matListItemTitle>{{item.name}}</div>
+    </mat-list-item>
+  </mat-list>
+</div>

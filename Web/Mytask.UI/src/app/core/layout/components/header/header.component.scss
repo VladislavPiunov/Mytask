@@ -1,0 +1,36 @@
+@use "@angular/material" as mat;
+
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  padding: 25px 32px;
+  gap: 20px;
+}
+
+#project {
+  color: #F1F0FF;
+  text-decoration: underline;
+}
+
+mat-divider {
+  border-color: #FFF !important; 
+  height: 35px;
+  border-width: 2px !important;
+}
+
+.search-bar {
+  input {
+    padding: 5px 20px 5px 50px;
+    border-radius: 100px;
+    border-style: none;
+    background: #fff;
+    width: 250px;
+    font-size: 20px;
+    outline: none;
+  }
+}
+
+.search-icon {
+    position: absolute;
+    margin: 5px 0px 0px 15px;
+}

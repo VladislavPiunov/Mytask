@@ -1,0 +1,27 @@
+.board {
+    margin: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.stage-plate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 330px;
+    height: 30px;
+    padding: 0px 12px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    // background: #BFB9FF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
+.stage-name {
+    color: var(--Dark-grey, #6F6F6F);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

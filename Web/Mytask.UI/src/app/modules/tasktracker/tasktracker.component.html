@@ -1,0 +1,7 @@
+<app-layout>
+  <div class="board">
+    <div class="stage-plate" *ngFor="let stage of stages$ | async as stages" appStageColor="{{stage.color}}">
+      <span class="stage-name">{{stage.name}}</span>
+    </div>
+  </div>
+</app-layout>
