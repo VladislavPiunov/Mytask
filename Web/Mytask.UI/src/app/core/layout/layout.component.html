@@ -3,7 +3,7 @@
     <app-drawer></app-drawer>
   </mat-drawer>
   <mat-drawer-content>
-    <app-header></app-header>
+    <app-header [selectedBoard$]="selectedBoard$" ></app-header>
     <main>
       <ng-content></ng-content>
     </main>

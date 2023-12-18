@@ -1,4 +1,6 @@
 <mat-toolbar color="primary" role="heading">
+  <h1 id="project" [routerLink]="['/']" routerLinkActive="router-link-active" >{{board.name}}</h1>
+  <mat-divider vertical></mat-divider>
   <div class="search-bar">
     <mat-icon class="search-icon">search</mat-icon>
     <input class="search-bar" type="text" matInput placeholder="Search Projects"/>

@@ -4,6 +4,18 @@ mat-toolbar {
   display: flex;
   flex-direction: row;
   padding: 25px 32px;
+  gap: 20px;
+}
+
+#project {
+  color: #F1F0FF;
+  text-decoration: underline;
+}
+
+mat-divider {
+  border-color: #FFF !important; 
+  height: 35px;
+  border-width: 2px !important;
 }
 
 .search-bar {

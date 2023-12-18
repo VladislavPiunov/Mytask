@@ -5,9 +5,10 @@ import { Board } from "../models/board.model";
 @Injectable({
   providedIn: "root"
 })
-export class TasktrackerState {
+export class LayoutState {
  private updating$ = new BehaviorSubject(false);
  private boards$ = new BehaviorSubject([] as Board[]);
+ private selectedBoard$ = new BehaviorSubject(new Board("","Mytask","",[],[]))
 
  isUpdating$() {
    return this.updating$.asObservable();
@@ -15,6 +16,14 @@ export class TasktrackerState {
 
  setUpdating(isUpdating: boolean) {
    this.updating$.next(isUpdating);
+ }
+
+ getSelectedBoard$() {
+  return this.selectedBoard$.asObservable();
+ }
+
+ setSelectedBoard(board: Board) {
+  this.selectedBoard$.next(board);
  }
 
  getBoards$() {

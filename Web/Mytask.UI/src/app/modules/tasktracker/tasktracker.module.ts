@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import {TasktrackerRoutingModule} from "./tasktracker-routing.module";
 import {SharedModule} from "../../shared/shared.module";
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'src/app/core/auth/auth.interceptor';
 import { CommonModule } from '@angular/common';
+import { StageColorDirective } from './directives/stage.color.directive';
+import { MaterialModule } from 'src/app/core/material.module';
 
 
 
@@ -12,18 +11,12 @@ import { CommonModule } from '@angular/common';
   imports: [
     SharedModule,
     CommonModule,
+    MaterialModule,
     TasktrackerRoutingModule,
+    StageColorDirective
   ],
   declarations: [
     TasktrackerRoutingModule.components
-  ],
-  providers: [
-    AuthService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
   ]
 })
 export class TasktrackerModule { }
