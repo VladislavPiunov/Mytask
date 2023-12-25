@@ -8,6 +8,8 @@ using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Discovery.Eureka;
 using Steeltoe.Discovery.Client;
 using Microsoft.OpenApi.Models;
+using Shared.Rabbit.Helpers;
+using Shared.Rabbit.Mytask;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,11 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 
 //Add Eureka
 builder.Services.AddServiceDiscovery(o => o.UseEureka());
+
+//Add RabbitMQ
+builder.Services.AddRabbitBase(builder.Configuration);
+
+builder.Services.AddHostedService<DeleteBoardReceiver>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

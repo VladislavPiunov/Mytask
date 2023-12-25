@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import * as moment from "moment";
 import { Observable } from "rxjs";
 import { shareReplay, tap } from "rxjs/operators";
+
 @Injectable( {
     providedIn: "root"
 })
@@ -13,7 +14,7 @@ export class AuthService {
     login(username:string, password:string ): Observable<any> {
         const body = new URLSearchParams();
         body.set("client_id", "mytask-client");
-        body.set("client_secret", "JUImQpTmItjl6gtL0kimr6TbDrYHt0DW");
+        body.set("client_secret", "CvrgW62xy9BvrfWI1SRfyvlUi8sVgHpQ");
         body.set("grant_type", "password");
         body.set("scope", "openid");
         body.set("username", username);

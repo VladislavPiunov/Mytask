@@ -88,6 +88,16 @@ services:
     image: steeltoeoss/eureka-server
     ports:
       - "8761:8761"
+ 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.12-management
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "admin"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
 networks:
   auth-network:

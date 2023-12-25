@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using Mytask.API.Model;
-using Task = Mytask.API.Model.Task;
+using Shared.Rabbit;
+using Task = System.Threading.Tasks.Task;
 
 namespace Mytask.API.Repositories;
 
@@ -9,12 +10,17 @@ public class BoardRepository: IBoardRepository
     private readonly ILogger<BoardRepository> _logger;
     private readonly MongoClient _mongoClient;
     private readonly IMongoDatabase _database;
+    private readonly RabbitConnectionHelper _rabbitConnection;
 
-    public BoardRepository(ILogger<BoardRepository> logger, MongoClient client)
+    public BoardRepository(
+        ILogger<BoardRepository> logger, 
+        MongoClient client,
+        RabbitConnectionHelper rabbitConnection)
     {
         _logger = logger;
         _mongoClient = client;
         _database = client.GetDatabase("mytask");
+        _rabbitConnection = rabbitConnection;
     }
 
     public async Task<List<Board>> GetBoardsAsync(string ownerId)
@@ -68,21 +74,23 @@ public class BoardRepository: IBoardRepository
 
     public async Task<bool> DeleteBoardAsync(string id)
     {
-        var deleted = await _database.GetCollection<Board>("boards")
-            .FindOneAndDeleteAsync(b => b.Id == id);
-        if (deleted == null)
-        {
-            _logger.LogInformation("Board not found.");
-            return false;
-        }
+        _rabbitConnection.PackAndSendMessage("delete-board", "delete-board-queue", id);
 
-        await _database.GetCollection<Model.Task>("tasks")
-            .DeleteManyAsync(t => t.BoardId == deleted.Id);
-        await _database.GetCollection<Stage>("stages")
-            .DeleteManyAsync(s => deleted.Stages.Contains(s.Id));   
+        //var deleted = await _database.GetCollection<Board>("boards")
+        //    .FindOneAndDeleteAsync(b => b.Id == id);
+        //if (deleted == null)
+        //{
+        //    _logger.LogInformation("Board not found.");
+        //    return false;
+        //}
+
+        //await _database.GetCollection<Model.Task>("tasks")
+        //    .DeleteManyAsync(t => t.BoardId == deleted.Id);
+        //await _database.GetCollection<Stage>("stages")
+        //    .DeleteManyAsync(s => deleted.Stages.Contains(s.Id));   
         
-        _logger.LogInformation("Board deleted successfully.");
+        //_logger.LogInformation("Board deleted successfully.");
 
-        return true;
+        return await Task.FromResult(true);
     }
 }
