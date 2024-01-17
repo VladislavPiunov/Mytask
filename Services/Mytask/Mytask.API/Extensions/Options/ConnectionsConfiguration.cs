@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Options
+namespace Mytask.API.Extensions.Options
 {
     public class ConnectionsConfiguration
     {
+        public string ConnectionName { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
     }
 

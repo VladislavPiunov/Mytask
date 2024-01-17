@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Rabbit.Helpers
+namespace Mytask.API.Rabbit.Helpers
 {
     public static class RabbitHelper
     {

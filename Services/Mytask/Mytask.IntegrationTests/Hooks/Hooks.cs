@@ -28,5 +28,19 @@ internal static class ScenarioBeforeAndAfter
 
         Common.ClearState();
     }
+
+    /// <summary>
+    /// Остановить и удалить все контейнеры
+    /// </summary>
+    [AfterScenario]
+    public static async Task RemoveAllContainers()
+    {
+        IList<ContainerListResponse> containers = await Common.dockerClient!.Containers.ListContainersAsync(new ContainersListParameters());
+        foreach (var container in containers)
+        {
+            await Common.dockerClient.Containers.KillContainerAsync(container.ID, new ContainerKillParameters());
+            await Common.dockerClient.Containers.RemoveContainerAsync(container.ID, new ContainerRemoveParameters());
+        }
+    }
 }
 

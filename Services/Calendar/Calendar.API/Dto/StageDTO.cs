@@ -1,4 +1,4 @@
-namespace Shared.Dto;
+namespace Calendar.API.Dto;
 
 public class StageDTO
 {

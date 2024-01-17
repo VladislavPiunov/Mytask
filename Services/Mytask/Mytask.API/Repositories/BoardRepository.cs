@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 using Mytask.API.Model;
-using Shared.Rabbit;
+using Mytask.API.Rabbit;
 using Task = System.Threading.Tasks.Task;
 
 namespace Mytask.API.Repositories;

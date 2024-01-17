@@ -1,14 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
+using Mytask.API.Model;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using Shared.Dto;
 using System.Text;
 using Task = System.Threading.Tasks.Task;
 
-namespace Shared.Rabbit.Mytask
+namespace Mytask.API.Rabbit.Receivers
 {
     public class DeleteBoardReceiver : BackgroundService
     {
@@ -62,16 +59,16 @@ namespace Shared.Rabbit.Mytask
                             var mongoClient = scope.ServiceProvider.GetRequiredService<MongoClient>();
                             var database = mongoClient.GetDatabase("mytask");
 
-                            var deleted = database.GetCollection<BoardDTO>("boards")
+                            var deleted = database.GetCollection<Board>("boards")
                                 .FindOneAndDelete(b => b.Id == message);
                             if (deleted == null)
                             {
                                 _logger.LogInformation("Board not found.");
                             }
 
-                            database.GetCollection<TaskDTO>("tasks")
+                            database.GetCollection<Model.Task>("tasks")
                                 .DeleteMany(t => t.BoardId == deleted.Id);
-                            database.GetCollection<StageDTO>("stages")
+                            database.GetCollection<Stage>("stages")
                                 .DeleteMany(s => deleted.Stages.Contains(s.Id));
 
                             _logger.LogInformation("Board deleted successfully.");

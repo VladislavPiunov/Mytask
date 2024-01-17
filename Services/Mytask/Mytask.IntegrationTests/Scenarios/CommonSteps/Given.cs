@@ -43,34 +43,5 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
                     .OnPathAndMethodEqual($"/auth/realms/my_realm/protocol/openid-connect/token", Method.Post)
                     .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetToken("my_realm", new Dictionary<string, string>())));
         }
-
-        //[Given(@"база данных имеет данные о канбан-досках")]
-        //public async Task GivenTheRepositoryHasBoardData()
-        //{
-        //    var jsonSerializerOptions = new JsonSerializerOptions
-        //    {
-        //        AllowTrailingCommas = true,
-        //        PropertyNameCaseInsensitive = true
-        //    };
-
-        //    var boardsJson = JsonFilesRepository.Files["boards.json"];
-        //    var boards = JsonSerializer.Deserialize<IList<Board>>(boardsJson, jsonSerializerOptions);
-        //    var client = new MongoClient("mongodb://user:pass@localhost:27017/");
-        //    var database = client.GetDatabase("mytask");
-        //    foreach (var board in boards)
-        //    {
-        //        Stage toDo = new Stage("To Do", "#3399FF");
-        //        await database.GetCollection<Stage>("stages").InsertOneAsync(toDo);
-
-        //        Stage inProgress = new Stage("In progress", "#FFFF33");
-        //        await database.GetCollection<Stage>("stages").InsertOneAsync(inProgress);
-
-        //        Stage done = new Stage("Done", "#99FF33");
-        //        await database.GetCollection<Stage>("stages").InsertOneAsync(done);
-
-        //        board.Stages = new List<string> { toDo.Id, inProgress.Id, done.Id };
-        //        await database.GetCollection<Board>("boards").InsertOneAsync(board);
-        //    }
-        //}
     }
 }

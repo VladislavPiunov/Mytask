@@ -1,4 +1,5 @@
 using Mytask.IntegrationTests.ExternalEnvironment.Containers;
+using Mytask.IntegrationTests.Scenarios;
 
 namespace Mytask.IntegrationTests.ExternalEnvironment;
 
@@ -38,14 +39,15 @@ internal static class ExtEnvironment
     public static async Task Start()
     {
         var dockerClient = new DockerClientConfiguration(new Uri(DockerApiUri())).CreateClient();
+
+        Common.dockerClient = dockerClient;
         
         // Создаем зависимости
         ConfigServerContainer = new ConfigServerContainer(dockerClient);
         MongoDbContainer = new MongoDbContainer(dockerClient);
         MountebankContainer = new MountebankContainer(dockerClient);
         
-        // Готовим окружение - удаляем лишнее и запускаем нужные контейнеры
-        await RemoveAllContainers(dockerClient);
+        // Готовим окружение - запускаем нужные контейнеры
         await Task.WhenAll(ConfigServerContainer.StartContainer(), MongoDbContainer.StartContainer(), MountebankContainer.StartContainer());
 
         // Стартуем сервер с приложением
@@ -92,18 +94,5 @@ internal static class ExtEnvironment
         }
 
         throw new Exception("Was unable to determine what OS this is running on");
-    }
-    
-    /// <summary>
-    /// Остановить и удалить все контейнеры
-    /// </summary>
-    private static async Task RemoveAllContainers(DockerClient dockerClient)
-    {
-        IList<ContainerListResponse> containers = await dockerClient.Containers.ListContainersAsync(new ContainersListParameters());
-        foreach (var container in containers)
-        {
-            await dockerClient.Containers.KillContainerAsync(container.ID, new ContainerKillParameters());
-            await dockerClient.Containers.RemoveContainerAsync(container.ID, new ContainerRemoveParameters());
-        }
     }
 }

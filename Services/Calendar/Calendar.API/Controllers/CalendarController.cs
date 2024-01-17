@@ -1,6 +1,6 @@
 ﻿using Calendar.API.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Dto;
+using Calendar.API.Dto;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -22,7 +22,7 @@ namespace Calendar.API.Controllers
             var data = new[]
             {
                 new KeyValuePair<string, string>("client_id", "mytask-client"),
-                new KeyValuePair<string, string>("client_secret", "JUImQpTmItjl6gtL0kimr6TbDrYHt0DW"),
+                new KeyValuePair<string, string>("client_secret", "t3yehvY5crLPxxHeqOMlHhbWg59OxuYW"),
                 new KeyValuePair<string, string>("grant_type", "password"),
                 new KeyValuePair<string, string>("scope", "openid"),
                 new KeyValuePair<string, string>("username", "admin"),

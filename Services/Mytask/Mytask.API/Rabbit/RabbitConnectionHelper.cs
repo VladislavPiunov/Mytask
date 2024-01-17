@@ -7,12 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Rabbit
+namespace Mytask.API.Rabbit
 {
     public class RabbitConnectionHelper
     {
-        public string QueueName { get; } = "test-hello-queue";
-        public string Exchange { get; } = "test-hello";
         public string RoutingKey { get; } = "/";
 
         private ConnectionFactory _factory { get; set; }

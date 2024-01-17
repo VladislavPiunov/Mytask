@@ -8,8 +8,9 @@ using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Discovery.Eureka;
 using Steeltoe.Discovery.Client;
 using Microsoft.OpenApi.Models;
-using Shared.Rabbit.Helpers;
-using Shared.Rabbit.Mytask;
+using Mytask.API.Rabbit.Helpers;
+using Mytask.API.Rabbit.Receivers;
+using Mytask.API.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +22,7 @@ builder.Services.AddCors();
 
 // Add Config Server
 builder.Configuration.AddConfigServer();
-builder.Services.Configure<EnvireConfiguration>(builder.Configuration.GetSection("MytaskAPI"));
+builder.Services.Configure<ConnectionsConfiguration>(builder.Configuration.GetSection("MytaskAPI"));
 
 // Add KeyCloak
 builder.Services.AddKeycloakAuthentication(builder.Configuration);
@@ -47,7 +48,7 @@ builder.Services.AddSwaggerGen(options =>
 
 // Add MongoDb
 var provider = builder.Services.BuildServiceProvider();
-var options = provider.GetRequiredService<IOptions<EnvireConfiguration>>().Value;
+var options = provider.GetRequiredService<IOptions<ConnectionsConfiguration>>().Value;
 builder.Services.AddHealthChecks().AddMongoDb(options.ConnectionStrings.Mongo);
 builder.Services.AddSingleton(new MongoClient(options.ConnectionStrings.Mongo));
 

@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace Shared.Dto
+namespace Calendar.API.Dto
 {
     public class BoardDTO
     {

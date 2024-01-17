@@ -11,10 +11,15 @@ public class BoardControllerTest
         _identityServiceMock = new Mock<IIdentityService>();
     }
 
-    [Test]
-    public async Task Get_boards_async_success()
+    [Datapoint]
+    public string firstUserId = "1";
+    
+    [Datapoint]
+    public string secondUserId = "2";
+
+    [Theory]
+    public async Task Get_boards_async_success(string fakeUserId)
     {
-        var fakeUserId = "1";
         var fakeBoardList = new List<Board> { GetBoardFake(fakeUserId) };
 
         _identityServiceMock.Setup(x => x.GetUserIdentity()).Returns(fakeUserId);
@@ -28,6 +33,7 @@ public class BoardControllerTest
         var actionResult = await boardController.GetBoardsAsync();
         
         Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Board>).First().OwnerId, fakeUserId);
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Board>), fakeBoardList);
     }
 

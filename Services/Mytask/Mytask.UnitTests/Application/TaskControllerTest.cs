@@ -9,15 +9,45 @@ public class TaskControllerTest
         _taskRepositoryMock = new Mock<ITaskRepository>();
     }
 
-    [Test]
-    public async Task Get_tasks_async_success()
+    public static IEnumerable<object[]> testValues()
     {
-        var fakeUserId = "1";
-        var fakeBoard = GetBoardFake(fakeUserId);
+        yield return new object[]
+        {
+            "1",
+            new Board("1")
+            {
+                Id = ObjectId.GenerateNewId().ToString(),
+                Stages =
+                {
+                    ObjectId.GenerateNewId().ToString(),
+                    ObjectId.GenerateNewId().ToString(),
+                    ObjectId.GenerateNewId().ToString()
+                }
+            }
+        };
 
+        yield return new object[]
+        {
+            "2",
+            new Board("2")
+            {
+                Id = ObjectId.GenerateNewId().ToString(),
+                Stages =
+                {
+                    ObjectId.GenerateNewId().ToString(),
+                    ObjectId.GenerateNewId().ToString(),
+                    ObjectId.GenerateNewId().ToString()
+                }
+            }
+        };
+    }
+
+    [TestCaseSource(nameof(testValues))]
+    public async Task Get_tasks_async_success(string fakeUserId, Board fakeBoard)
+    {
         var fakeTaskList = new List<Model.Task>
         {
-            new Model.Task("test1", fakeBoard.Id, fakeBoard.Stages[0]) { Description = "test" },
+            new Model.Task("test1", fakeBoard.Id, fakeBoard.Stages[0]) { Description = "test", Executor = fakeUserId },
             new Model.Task("test3", fakeBoard.Id, fakeBoard.Stages[1]) { Description = "test" },
             new Model.Task("test2", fakeBoard.Id, fakeBoard.Stages[2]) { Description = "test" }
         };
@@ -31,6 +61,7 @@ public class TaskControllerTest
 
         Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Model.Task>), fakeTaskList);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Model.Task>).First().Executor, fakeUserId);
     }
 
     [Test]

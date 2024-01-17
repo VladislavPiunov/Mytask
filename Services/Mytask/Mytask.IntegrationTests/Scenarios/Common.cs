@@ -6,6 +6,10 @@ namespace Mytask.IntegrationTests.Scenarios;
 internal static class Common
 {
     /// <summary>
+    /// docker client
+    /// </summary>
+    public static DockerClient? dockerClient {  get; set; }
+    /// <summary>
     /// http ответ
     /// </summary>
     public static HttpResponseMessage? HttpResponseMessage { get; set; }
