@@ -10,13 +10,16 @@
 
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="7.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.13" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.16" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.16" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="7.4.0" />
+        <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="7.4.0" />
         <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
         <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
         <PackageReference Include="Steeltoe.Discovery.Eureka" Version="3.2.6" />
         <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="3.2.5" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />
     </ItemGroup>
     <ItemGroup>
       <InternalsVisibleTo Include="Mytask.IntegrationTests" />

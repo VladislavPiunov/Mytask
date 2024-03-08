@@ -14,7 +14,7 @@ export class AuthService {
     login(username:string, password:string ): Observable<any> {
         const body = new URLSearchParams();
         body.set("client_id", "mytask-client");
-        body.set("client_secret", "CvrgW62xy9BvrfWI1SRfyvlUi8sVgHpQ");
+        body.set("client_secret", "GbQOu0qgq5aS9blYQsg96PileRe0j2WV");
         body.set("grant_type", "password");
         body.set("scope", "openid");
         body.set("username", username);

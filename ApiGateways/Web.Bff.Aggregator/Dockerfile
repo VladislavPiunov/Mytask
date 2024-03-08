@@ -8,17 +8,15 @@ WORKDIR /app
 EXPOSE 5052
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ApiGateways/Web.Bff.Aggregator/Web.Bff.Aggregator.csproj", "ApiGateways/Web.Bff.Aggregator/"]
-RUN dotnet restore "./ApiGateways/Web.Bff.Aggregator/./Web.Bff.Aggregator.csproj"
+COPY ["Web.Bff.Aggregator.csproj", "./"]
+RUN dotnet restore "Web.Bff.Aggregator.csproj"
 COPY . .
-WORKDIR "/src/ApiGateways/Web.Bff.Aggregator"
-RUN dotnet build "./Web.Bff.Aggregator.csproj" -c %BUILD_CONFIGURATION% -o /app/build
+WORKDIR "/src/"
+RUN dotnet build "Web.Bff.Aggregator.csproj" -c Release -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Web.Bff.Aggregator.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Web.Bff.Aggregator.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

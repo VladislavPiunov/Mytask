@@ -11,14 +11,25 @@ using Microsoft.OpenApi.Models;
 using Mytask.API.Rabbit.Helpers;
 using Mytask.API.Rabbit.Receivers;
 using Mytask.API.Extensions.Options;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
+IdentityModelEventSource.ShowPII = true;
+
+var MytaskSpecificOrigin = "_mytaskSpecificOrigin";
 
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MytaskSpecificOrigin,
+        policy =>
+        {
+            policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        });
+});
 
 // Add Config Server
 builder.Configuration.AddConfigServer();
@@ -31,9 +42,9 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 builder.Services.AddServiceDiscovery(o => o.UseEureka());
 
 //Add RabbitMQ
-builder.Services.AddRabbitBase(builder.Configuration);
+//builder.Services.AddRabbitBase(builder.Configuration);
 
-builder.Services.AddHostedService<DeleteBoardReceiver>();
+//builder.Services.AddHostedService<DeleteBoardReceiver>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -70,7 +81,7 @@ app.UseSwaggerUI(options =>
 });
 // }
 
-app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+app.UseCors(MytaskSpecificOrigin);
 
 app.UseRouting();
 

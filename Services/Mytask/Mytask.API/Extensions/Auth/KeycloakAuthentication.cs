@@ -29,7 +29,7 @@ namespace Mytask.API.Extensions.Auth
                     opt.SaveToken = true;
                     opt.TokenValidationParameters = new TokenValidationParameters()
                     {
-                        ValidateIssuer = true,
+                        ValidateIssuer = false, //TODO: Разобраться, нужно ли валидировать эмитент и как
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,

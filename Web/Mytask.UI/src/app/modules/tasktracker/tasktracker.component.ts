@@ -25,6 +25,8 @@ export class TasktrackerComponent implements OnInit{
   ngOnInit(): void {
     this.selectedBoard$.subscribe({
       next: (board) => {
+        if (board.id == '')
+          return;
         this.stages$ = this.stageApi.getStages(board.id);
       }});
   }
