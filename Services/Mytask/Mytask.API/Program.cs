@@ -8,14 +8,10 @@ using Steeltoe.Extensions.Configuration.ConfigServer;
 using Steeltoe.Discovery.Eureka;
 using Steeltoe.Discovery.Client;
 using Microsoft.OpenApi.Models;
-using Mytask.API.Rabbit.Helpers;
-using Mytask.API.Rabbit.Receivers;
 using Mytask.API.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
-
-IdentityModelEventSource.ShowPII = true;
 
 var MytaskSpecificOrigin = "_mytaskSpecificOrigin";
 

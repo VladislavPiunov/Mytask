@@ -87,6 +87,16 @@ services:
       - type: bind
         source: ./data
         target: /data/db
+
+  redis:
+    image: redis:latest
+    restart: on-failure
+    ports:
+     - "6379:6379"
+    environment:
+     - REDIS_PASSWORD=my-password
+     - REDIS_PORT=6379
+     - REDIS_DATABASES=1
         
   config-server:
     image: steeltoeoss/config-server

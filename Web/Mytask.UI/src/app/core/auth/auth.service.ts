@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import * as moment from "moment";
 import { Observable } from "rxjs";
 import { shareReplay, tap } from "rxjs/operators";
+import { KeyCloakPaths, environment, keycloak } from "src/app/environments/environments";
 
 @Injectable( {
     providedIn: "root"
@@ -13,8 +14,8 @@ export class AuthService {
 
     login(username:string, password:string ): Observable<any> {
         const body = new URLSearchParams();
-        body.set("client_id", "mytask-client");
-        body.set("client_secret", "GbQOu0qgq5aS9blYQsg96PileRe0j2WV");
+        body.set("client_id", keycloak.clientId);
+        body.set("client_secret", keycloak.clientSecret);
         body.set("grant_type", "password");
         body.set("scope", "openid");
         body.set("username", username);
@@ -24,7 +25,7 @@ export class AuthService {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
 
-        return this.http.post("http://localhost:8484/auth/realms/my_realm/protocol/openid-connect/token", body, options)
+        return this.http.post(environment.keyCloakUrl + KeyCloakPaths.Token, body, options)
             .pipe(
                 tap(res => this.setSession(res)),
                 shareReplay()
@@ -33,8 +34,8 @@ export class AuthService {
     
     refresh() : Observable<any> {
         const body = new URLSearchParams();
-        body.set("client_id", "mytask-client");
-        body.set("client_secret", "JUImQpTmItjl6gtL0kimr6TbDrYHt0DW");
+        body.set("client_id", keycloak.clientId);
+        body.set("client_secret", keycloak.clientSecret);
         body.set("grant_type", "refresh_token");
         body.set("refresh_token", localStorage.getItem("refresh_token") ?? "");
 
@@ -42,7 +43,7 @@ export class AuthService {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
 
-        return this.http.post("http://localhost:8484/auth/realms/my_realm/protocol/openid-connect/token", body, options)
+        return this.http.post(environment.keyCloakUrl + KeyCloakPaths.Token, body, options)
             .pipe(
                 tap(res => this.setSession(res)),
                 shareReplay()

@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateways", "ApiGateways"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Bff.Aggregator", "ApiGateways\Web.Bff.Aggregator\Web.Bff.Aggregator.csproj", "{CB21188F-5B53-4EA5-9D77-E7C2B4DEC1BE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{560384F1-7769-43CA-B3B3-EAAF9102EFCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notifications.API", "Services\Notifications\Notifications.API\Notifications.API.csproj", "{C115DAC5-F45A-4F4A-96C3-140E2F808E87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,10 @@ Global
 		{CB21188F-5B53-4EA5-9D77-E7C2B4DEC1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB21188F-5B53-4EA5-9D77-E7C2B4DEC1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB21188F-5B53-4EA5-9D77-E7C2B4DEC1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C115DAC5-F45A-4F4A-96C3-140E2F808E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C115DAC5-F45A-4F4A-96C3-140E2F808E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C115DAC5-F45A-4F4A-96C3-140E2F808E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C115DAC5-F45A-4F4A-96C3-140E2F808E87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,8 @@ Global
 		{5072D647-20EA-452F-AA01-D46544F7A18D} = {2A8B4940-C431-4E24-94D1-661F34B3A5BC}
 		{BB6C2211-8B81-47CB-9C80-C1176681F668} = {8194A3F3-8371-4505-B7FB-AC375E815F70}
 		{CB21188F-5B53-4EA5-9D77-E7C2B4DEC1BE} = {59BEFF25-8C5C-4DA4-BA35-213727CB66C3}
+		{560384F1-7769-43CA-B3B3-EAAF9102EFCC} = {8194A3F3-8371-4505-B7FB-AC375E815F70}
+		{C115DAC5-F45A-4F4A-96C3-140E2F808E87} = {560384F1-7769-43CA-B3B3-EAAF9102EFCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EC4FFF7-56DD-4F88-B919-5F287B1A5D39}
