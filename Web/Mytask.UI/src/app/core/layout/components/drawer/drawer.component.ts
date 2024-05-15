@@ -14,44 +14,29 @@ export interface Section {
 export class DrawerComponent {
   menuItems: Section[] = [
     {
-      name: 'Task Board',
-      link: '/',
+      name: 'Доска',
+      link: '/board',
       icon: 'dashboard'
     },
     {
-      name: 'List',
-      link: '/',
-      icon: 'event'
-    },
-    {
-      name: 'Timeline',
-      link: '/',
-      icon: 'list'
-    },
-    {
-      name: 'Calendar',
-      link: '/',
+      name: 'Календарь',
+      link: '/calendar',
       icon: 'calendar_month'
     },
     {
-      name: 'Progress',
-      link: '/',
-      icon: 'show_chart'
-    },
-    {
-      name: 'Forms',
-      link: '/',
-      icon: 'content_paste'
+      name: 'Настройки',
+      link: '/settings',
+      icon: 'settings'
     }
   ];
 
-  communicationItems: Section[] = [
-    {
-      name: 'Chat',
-      link: '/',
-      icon: 'chat'
-    }
-  ];
+  // communicationItems: Section[] = [
+  //   {
+  //     name: 'Chat',
+  //     link: '/',
+  //     icon: 'chat'
+  //   }
+  // ];
 
   trackByName(index: any, section: Section) {
     return section.name;

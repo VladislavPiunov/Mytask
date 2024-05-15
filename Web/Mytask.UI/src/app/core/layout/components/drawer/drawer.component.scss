@@ -24,3 +24,12 @@
     align-self: stretch;
     margin: 0px 40px;
 }
+
+.is-active {
+    mat-icon {
+        color: #48409E;
+    }
+    .mdc-list-item__primary-text {
+        color: #48409E;
+    }
+}

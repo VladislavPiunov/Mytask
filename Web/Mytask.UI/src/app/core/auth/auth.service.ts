@@ -29,7 +29,7 @@ export class AuthService {
             .pipe(
                 tap(res => this.setSession(res)),
                 shareReplay()
-                ); 
+            ); 
     }
     
     refresh() : Observable<any> {
@@ -47,7 +47,7 @@ export class AuthService {
             .pipe(
                 tap(res => this.setSession(res)),
                 shareReplay()
-                ); 
+            ); 
     }
     
     private setSession(authResult: any) {

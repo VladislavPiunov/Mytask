@@ -18,4 +18,8 @@ export class BoardApi {
    return this.http.get<Board[]>(this.API);
  }
 
+ updateBoard(updatedBoard: Board): Observable<Board> {
+   return this.http.put<Board>(this.API, updatedBoard);
+ }
+
 }

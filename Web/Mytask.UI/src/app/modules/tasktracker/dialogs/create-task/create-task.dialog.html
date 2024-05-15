@@ -1,0 +1,39 @@
+<h2 mat-dialog-title class="dialog-title">Новая задача</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="form">
+    <div class="dialog-block left-block">
+      <mat-form-field appearance="outline">
+        <mat-label>Название</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Описание</mat-label>
+        <textarea matInput formControlName="description" style="height: 200px;"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Дата выполнения</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="deadline">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="dialog-block right-block">
+      <mat-form-field appearance="outline">
+        <mat-label>Выберите статус</mat-label>
+        <mat-select formControlName="stageId">
+          <mat-option *ngFor="let stage of data.stages | async as stages" value={{stage.id}}>{{stage.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Выберите ответственного</mat-label>
+        <mat-select formControlName="executor">
+          <mat-option *ngFor="let user of ((users$ | async) || []) | filterByUsers: boardUsers" value={{user.id}}><mat-icon>person</mat-icon>{{user.username}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="onNoClick()" mat-flat-button>Отмена</button>
+  <button (click)="onClick()" color="submit" mat-flat-button>Сохранить</button>
+</mat-dialog-actions>

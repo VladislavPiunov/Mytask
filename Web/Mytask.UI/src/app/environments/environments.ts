@@ -12,10 +12,10 @@ export const keycloak = {
 export enum MyTaskApiPaths {
     Board = '/board',
     Stage = '/stage',
-    Task = '/task'
+    Task = '/task',
+    Keycloak = '/keycloak'
 }
 
 export enum KeyCloakPaths {
     Token = '/auth/realms/my_realm/protocol/openid-connect/token',
-    Users = '/auth/admin/realms/my_realm/users'
 }

@@ -1,0 +1,32 @@
+.dialog-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: #48409E;
+}
+
+.dialog-content {
+    padding: 20px;
+}
+
+.dialog-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-block {
+    width: 550px;
+}
+
+.right-block {
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+button {
+    margin-right: 10px;
+}

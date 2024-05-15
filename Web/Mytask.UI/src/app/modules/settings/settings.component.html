@@ -1,0 +1,14 @@
+<app-layout>
+    <div id="body">
+        <h1>Настройки</h1>
+        <p>Пользователи: </p>
+        <mat-list id="user-list">
+            <div class="user-list-item" *ngFor="let user of users"><p>{{user.username}}</p> <button class="small-icon-button" (click)="removeUser(user)" mat-icon-button><mat-icon>close</mat-icon></button></div>
+        </mat-list>
+        <button (click)="openDialogAddUsers()" mat-button>Добавить пользователей</button>
+        <div class="button-panel">
+            <button (click)="onCancel()" mat-button [disabled]="!isChanged">Отмена</button>
+            <button (click)="onSave()" color="submit" mat-flat-button [disabled]="!isChanged">Сохранить</button>
+        </div>
+    </div>
+</app-layout>

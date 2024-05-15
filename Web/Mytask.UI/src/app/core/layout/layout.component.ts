@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from './models/board.model';
 import { LayoutFacade } from './layout.facade';
@@ -8,7 +8,7 @@ import { LayoutFacade } from './layout.facade';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
   boards$: Observable<Board[]>;
   selectedBoard$: Observable<Board>;
 
@@ -16,11 +16,8 @@ export class LayoutComponent implements OnInit {
     private layoutFacade: LayoutFacade,
     ) 
     {
+      this.layoutFacade.loadBoards();
       this.boards$ = layoutFacade.getBoards$();
       this.selectedBoard$ = layoutFacade.getSelectedBoard$();
-    }
-  
-    ngOnInit(): void {
-      this.layoutFacade.loadBoards();
     }
 }

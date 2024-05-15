@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, tap } from "rxjs";
 import { BoardApi } from "./api/board.api";
-import { LayoutState } from "./state/layout.state";
+import { BoardState } from "./state/board.state";
 import { Board } from "./models/board.model";
 
 @Injectable({
@@ -10,22 +10,31 @@ import { Board } from "./models/board.model";
 export class LayoutFacade {
     constructor(
         private boardApi: BoardApi,
-        private layoutState: LayoutState
+        private boardState: BoardState
     ) { }
 
     getSelectedBoard$(): Observable<Board> {
-        return this.layoutState.getSelectedBoard$();
+        return this.boardState.getSelectedBoard$();
     }
 
     getBoards$(): Observable<Board[]> {
-        return this.layoutState.getBoards$();
+        return this.boardState.getBoards$();
     }
 
-    loadBoards() {
-        return this.boardApi.getBoards()
-        .pipe(tap(boards => {
-            this.layoutState.setBoards(boards);
-            this.layoutState.setSelectedBoard(boards[0]);
-        })).subscribe();
+    loadBoards(): void {
+        this.boardApi.getBoards().pipe(
+            tap(boards => {
+                this.boardState.setBoards(boards);
+                this.boardState.setSelectedBoard(boards[0]);
+            })
+        ).subscribe();
+    }
+
+    updateBoard(updatedBoard: Board): void {
+        this.boardApi.updateBoard(updatedBoard).pipe(
+            tap(board => {
+                this.boardState.updateBoard(board);
+            })
+        ).subscribe();
     }
 }

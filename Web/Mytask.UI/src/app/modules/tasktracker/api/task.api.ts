@@ -17,5 +17,16 @@ import { Observable } from "rxjs";
    getTasks(boardId: string): Observable<Task[]> {
      return this.http.get<Task[]>(this.API + "/" + boardId);
    }
-  
+
+   createTask(task: Task) : Observable<Task> {
+    return this.http.post<Task>(this.API, task);
+   }
+
+   updateTask(task: Task) : Observable<Task> {
+    return this.http.put<Task>(this.API, task);
+   }
+
+   deleteTask(taskId: string): Observable<boolean> {
+    return this.http.delete<boolean>(this.API + "/" + taskId);
+   }
   }

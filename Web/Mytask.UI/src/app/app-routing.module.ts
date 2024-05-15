@@ -12,6 +12,20 @@ const routes: Routes = [
         m => m.TasktrackerModule
       )
   },
+  {
+    path: 'calendar',
+    loadChildren: () => 
+      import('./modules/calendar/calendar.module').then(
+        m => m.CalendarModule
+      )
+  },
+  {
+    path: 'settings',
+    loadChildren: () => 
+      import('./modules/settings/settings.module').then(
+        m => m.SettingsModule
+      )
+  },
   {path: 'login', component: LoginComponent},
   {path: '**', pathMatch: 'full', component: NotfoundComponent}
 ];

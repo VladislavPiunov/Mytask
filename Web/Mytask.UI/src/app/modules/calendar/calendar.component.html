@@ -1,0 +1,30 @@
+<app-layout>
+    <div class="body">
+        <div id="calendar-header">
+            <div id="month-selector">
+                <button mat-icon-button>
+                    <mat-icon>arrow_back_ios</mat-icon>
+                </button>
+                <h1>Май 2024</h1>
+                <button mat-icon-button>
+                    <mat-icon>arrow_forward_ios</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div id="calendar">
+            <div class="row">
+                <div class="header-cell" *ngFor="let dayOfWeek of daysOfWeek">
+                    <p>{{dayOfWeek.shortName}}</p>
+                </div>
+            </div>
+            <div *ngFor="let number of [0,1,2,3,4,5]" class="row">
+                <div class="cell" *ngFor="let day of days | takeFirstSeven: number">
+                    <p class="day">{{day?.getDate()}}</p>
+                    <div class="meetings-container">
+                        <div class="meeting" *ngFor="let meeting of meetings | filterByDate: day"><p>{{meeting.name}}</p><p>{{meeting.date.getHours()}}:{{meeting.date.getMinutes()}}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>

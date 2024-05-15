@@ -4,6 +4,7 @@ export class Board {
     public name: string,
     public ownerId: string,
     public stages: string[],
-    public userd: string[] 
-    ) {}
+    public users: string[] 
+  ) {}
+
 }

@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {TasktrackerComponent} from "./tasktracker.component";
 import {RouterModule, Routes} from "@angular/router";
+import { CreateTaskDialogComponent } from './dialogs/create-task/create-task.dialog';
+import { EditTaskDialogComponent } from './dialogs/edit-task/edit-task.dialog';
+import { DeleteTaskDialogComponent } from './dialogs/delete-task/delete-task.dialog';
 
 const routes: Routes = [
   { path: '', component: TasktrackerComponent }
@@ -12,6 +15,9 @@ const routes: Routes = [
 })
 export class TasktrackerRoutingModule {
   static components: any[] = [
-    TasktrackerComponent
+    TasktrackerComponent,
+    CreateTaskDialogComponent,
+    EditTaskDialogComponent,
+    DeleteTaskDialogComponent
   ]
 }

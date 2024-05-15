@@ -15,7 +15,7 @@ import { AuthInterceptor } from '../core/auth/auth.interceptor';
     CommonModule,
     MaterialModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   declarations: [
     HeaderComponent,

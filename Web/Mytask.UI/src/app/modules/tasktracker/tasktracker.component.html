@@ -1,10 +1,35 @@
 <app-layout>
-  <div class="board">
-    <div *ngFor="let stage of stages$ | async as stages">
-      <div class="stage-plate"  appStageColor="{{stage.color}}">
+  <div class="board" cdkDropListGroup>
+    <div class="stage-column" *ngFor="let stage of stages$ | async as stages">
+      <div class="stage-plate" appStageColor="{{stage.color}}">
         <span class="stage-name">{{stage.name}}</span>
+        <button mat-icon-button aria-label="Создать задачу" class="small-icon-button" (click)="openDialogCreate(stage.id)">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
-      
+      <div 
+          class="task-container" 
+          cdkDropList
+          [cdkDropListData]="tasks"
+          (cdkDropListDropped)="drop($event)"
+          (cdkDropListEntered)="enter(stage.id)">
+          <div class="task-plate" *ngFor="let task of tasks | filterByStage: stage.id" cdkDrag [cdkDragData]="task">
+            <div class="task-content">
+              <div class="task-information">
+                <span class="task-title">{{task.name}}</span>
+                <span>Дата: {{transformDate(task.deadline)}}</span>
+              </div>
+              <div class="task-actions">
+                <button mat-icon-button (click)="openDialogEdit(task)" aria-label="Редактировать задачу" class="small-icon-button" color="primary">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button (click)="deleteTask(task.id)" aria-label="Удалить задачу" class="small-icon-button" color="primary">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </app-layout>

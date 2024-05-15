@@ -1,0 +1,32 @@
+<h2 mat-dialog-title class="dialog-title">{{task.name}}</h2>
+<mat-dialog-content class="dialog-content">
+    <div class="dialog-block" id="left-block">
+        <div id="description">
+            {{task.description}}
+        </div>
+        <mat-form-field appearance="outline" id="date">
+          <mat-label>Дата выполнения</mat-label>
+          <input matInput [matDatepicker]="picker" [value]="task.deadline">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="dialog-block" id="right-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Статус</mat-label>
+          <mat-select [(value)]="task.stageId">
+            <mat-option *ngFor="let stage of data.stages | async as stages" value={{stage.id}}>{{stage.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Ответственный</mat-label>
+          <mat-select [(value)]="task.executor">
+            <mat-option *ngFor="let user of ((users$ | async) || []) | filterByUsers: boardUsers" value={{user.id}}><mat-icon>person</mat-icon>{{user.username}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="onNoClick()" mat-flat-button>Отмена</button>
+  <button (click)="onClick()" color="submit" mat-flat-button>Сохранить</button>
+</mat-dialog-actions>

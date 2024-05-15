@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 var MytaskSpecificOrigin = "_mytaskSpecificOrigin";
 
 // Add services to the container.
+builder.Services.AddHttpClient();
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddCors(options =>

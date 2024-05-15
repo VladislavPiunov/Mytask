@@ -12,7 +12,7 @@ namespace Mytask.API.Extensions.Auth
                 .GetSection("KeycloakOptions").Get<KeycloakOptions>()
                 ?? throw new ArgumentNullException(nameof(KeycloakOptions));
 
-            //services.Configure<KeycloakOptions>(configuration.GetSection("KeycloakOptions"));
+            services.Configure<KeycloakOptions>(configuration.GetSection("KeycloakOptions"));
 
             services
                 .AddAuthentication(opt =>
