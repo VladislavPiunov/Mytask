@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Notifications.API.Model;
-using Notifications.API.Repositories;
 
 namespace Notifications.API.Controllers
 {

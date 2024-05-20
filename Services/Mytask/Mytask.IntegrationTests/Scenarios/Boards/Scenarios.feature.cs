@@ -92,19 +92,16 @@ namespace Mytask.IntegrationTests.Scenarios.Boards
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Пользователь может создать/отредактировать/получить список категорий/удалить кате" +
-            "гории")]
+        [Xunit.SkippableFactAttribute(DisplayName="Пользователь может получить список досок")]
         [Xunit.TraitAttribute("FeatureTitle", "Board")]
-        [Xunit.TraitAttribute("Description", "Пользователь может создать/отредактировать/получить список категорий/удалить кате" +
-            "гории")]
-        public void ПользовательМожетСоздатьОтредактироватьПолучитьСписокКатегорийУдалитьКатегории()
+        [Xunit.TraitAttribute("Description", "Пользователь может получить список досок")]
+        public void ПользовательМожетПолучитьСписокДосок()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Пользователь может создать/отредактировать/получить список категорий/удалить кате" +
-                    "гории", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Пользователь может получить список досок", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
-  this.ScenarioInitialize(scenarioInfo);
+   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -122,40 +119,148 @@ namespace Mytask.IntegrationTests.Scenarios.Boards
 #line 8
     testRunner.Then("список досок получен c количеством элементов 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 9
-    testRunner.When("пользователь создает канбан-доску с названием \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Пользователь может создать доску")]
+        [Xunit.TraitAttribute("FeatureTitle", "Board")]
+        [Xunit.TraitAttribute("Description", "Пользователь может создать доску")]
+        public void ПользовательМожетСоздатьДоску()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Пользователь может создать доску", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
-    testRunner.Then("доска успешно создана", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 2
+  this.FeatureBackground();
 #line hidden
 #line 11
-    testRunner.And("название доски \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
-    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Then("список досок получен c количеством элементов 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
-    testRunner.Then("список досок получен c количеством элементов 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When("пользователь создает канбан-доску с названием \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
-    testRunner.When("пользователь обновляет название доски на \"SomeBoardNameUpdated\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Then("доска успешно создана", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
-    testRunner.Then("доска успешно обновлена", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("название доски \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
-    testRunner.And("название доски \"SomeBoardNameUpdated\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
-    testRunner.When("пользователь удаляет доску", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 18
-    testRunner.Then("доска успешно удалена", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 19
     testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 17
+    testRunner.Then("список досок получен c количеством элементов 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Пользователь может редактировать доску")]
+        [Xunit.TraitAttribute("FeatureTitle", "Board")]
+        [Xunit.TraitAttribute("Description", "Пользователь может редактировать доску")]
+        public void ПользовательМожетРедактироватьДоску()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Пользователь может редактировать доску", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 19
+   this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 2
+  this.FeatureBackground();
+#line hidden
 #line 20
+    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 21
+    testRunner.Then("список досок получен c количеством элементов 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 22
+    testRunner.When("пользователь обновляет название доски на \"SomeBoardNameUpdated\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 23
+    testRunner.Then("доска успешно обновлена", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 24
+    testRunner.And("название доски \"SomeBoardNameUpdated\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Пользователь может удалить доску")]
+        [Xunit.TraitAttribute("FeatureTitle", "Board")]
+        [Xunit.TraitAttribute("Description", "Пользователь может удалить доску")]
+        public void ПользовательМожетУдалитьДоску()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Пользователь может удалить доску", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 26
+   this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 2
+  this.FeatureBackground();
+#line hidden
+#line 27
+    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
+    testRunner.Then("список досок получен c количеством элементов 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 29
+    testRunner.When("пользователь создает канбан-доску с названием \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+    testRunner.Then("доска успешно создана", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 31
+    testRunner.And("название доски \"SomeBoardName\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 32
+    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 33
+    testRunner.Then("список досок получен c количеством элементов 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 34
+    testRunner.When("пользователь удаляет доску", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 35
+    testRunner.Then("доска успешно удалена", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 36
+    testRunner.When("пользователь запрашивает список всех досок", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
     testRunner.Then("список досок получен c количеством элементов 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -15,7 +15,7 @@ namespace Mytask.IntegrationTests.Scenarios.Boards.Steps
             // Проверим, что код ответа 200
             Common.HttpResponseMessage!.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            // десериализуем и сохраним полученную в ответе категорию
+            // Десериализуем и сохраним полученную в ответе категорию
             Common.Board = Common.HttpResponseMessage.Content.ReadAs<Board>();
         }
 
@@ -60,6 +60,9 @@ namespace Mytask.IntegrationTests.Scenarios.Boards.Steps
 
             // Десериализуем полученный список категорий
             var result = Common.HttpResponseMessage.Content.ReadAs<List<Board>>();
+
+            // Десериализуем и сохраним полученную в ответе категорию
+            Common.Board = result[0];
 
             // Количество категорий в списке должно быть {count}
             result!.Count.Should().Be(count);
