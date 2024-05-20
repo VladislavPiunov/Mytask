@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { DayOfWeek } from './model/day-of-week.model';
 import { Meeting } from './model/meeting.model';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateMeetingDialogComponent } from './dialogs/create-meeting/create-meeting.dialog';
+import { EditMeetingDialogComponent } from './dialogs/edit-meeting/edit-meeting.dialog';
 
 @Component({
   selector: 'app-calendar',
@@ -22,7 +25,9 @@ export class CalendarComponent {
 
   meetings = [ new Meeting("Встреча 1", new Date(moment.now()), "1") ];
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog
+  ) {
     const currDate = new Date(moment.now());
     this.days = this.getDaysInMonth(currDate.getMonth(), currDate.getFullYear());
     let residual = 42 - this.days.length;
@@ -49,5 +54,23 @@ export class CalendarComponent {
       date.setDate(date.getDate() + 1);
     }
     return days;
+  }
+
+  openDialogCreate(): void {
+    const dialogRef = this.dialog.open(CreateMeetingDialogComponent, {
+      width: '850px',
+      height: '555px',
+      data: [],
+      panelClass: 'dialog-box'
+    })
+  }
+
+  openDialogEdit(): void {
+    const dialogRef = this.dialog.open(EditMeetingDialogComponent, {
+      width: '850px',
+      height: '480px',
+      data: [],
+      panelClass: 'dialog-box'
+    })
   }
 }

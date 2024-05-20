@@ -1,0 +1,58 @@
+.dialog-title {
+    font-size: 28px;
+    font-weight: 500;
+    color: #48409E;
+}
+
+.dialog-content {
+    padding: 20px;
+}
+
+.dialog-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left-block {
+    width: 550px;
+}
+
+.right-block {
+    width: 230px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+#user-list {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px;
+    height: 200px;
+    overflow: auto;
+    background-color: white;
+}
+
+#time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    p {
+        margin: 0px;
+        font-size: 24px;
+    }
+}
+
+.time-field {
+    width: 105px;
+}

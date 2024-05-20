@@ -5,18 +5,21 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { CalendarRoutingModule } from "./calendar-routing.module";
 import { TakeFirstSevenPipe } from "./pipe/take-first-seven.pipe";
 import { FilterByDatePipe } from "./pipe/filter-by-date.pipe";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     imports: [
         SharedModule,
         CommonModule,
         MaterialModule,
-        CalendarRoutingModule
+        CalendarRoutingModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         CalendarRoutingModule.components,
         TakeFirstSevenPipe,
-        FilterByDatePipe
+        FilterByDatePipe,
     ],
     providers: [ TakeFirstSevenPipe, FilterByDatePipe ]
 })

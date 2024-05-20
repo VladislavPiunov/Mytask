@@ -2,11 +2,11 @@
     <div class="body">
         <div id="calendar-header">
             <div id="month-selector">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="openDialogCreate()">
                     <mat-icon>arrow_back_ios</mat-icon>
                 </button>
                 <h1>Май 2024</h1>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="openDialogEdit()">
                     <mat-icon>arrow_forward_ios</mat-icon>
                 </button>
             </div>

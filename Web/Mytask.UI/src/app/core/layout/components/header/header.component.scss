@@ -38,3 +38,31 @@ mat-divider {
 .notifications-icon {
   margin-left: auto;
 }
+
+#notifications {
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 500px;
+  border: 2px solid rgb(167, 162, 162);
+  border-radius: 8px;
+  background-color: white;
+  z-index: 999;
+  top: 42px;
+  left: 1250px;
+}
+
+#notifications-list {
+  height: 100%;
+}
+
+.notification-name {
+  color: black;
+  font-weight: 400;
+  margin: 0;
+}
+
+.notification-date {
+  margin: 0;
+  font-size: 14px;
+}

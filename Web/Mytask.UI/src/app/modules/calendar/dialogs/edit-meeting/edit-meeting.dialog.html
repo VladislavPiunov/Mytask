@@ -1,0 +1,45 @@
+<h2 mat-dialog-title class="dialog-title">Встреча 1</h2>
+<mat-dialog-content class="dialog-content">
+  <form>
+    <div class="dialog-block left-block">
+      <div>
+        <p>Участники:</p>
+        <mat-list id="user-list">
+          <div class="user-list-item" *ngFor="let user of selectedUsers">
+            <p>{{user.username}}</p><button class="small-icon-button" (click)="removeUser(user)"
+              mat-icon-button><mat-icon>close</mat-icon></button>
+          </div>
+        </mat-list>
+        <button mat-button>Добавить пользователей</button>
+      </div>
+    </div>
+    <div class="dialog-block right-block">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Дата</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <p>Время:</p>
+        <div id="time">
+          <mat-form-field class="time-field" appearance="outline" subscriptSizing="dynamic">
+            <mat-select>
+              <mat-option *ngFor="let hour of hours" value={{hour}}>{{hour}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p>:</p>
+          <mat-form-field class="time-field" appearance="outline" subscriptSizing="dynamic">
+            <mat-select>
+              <mat-option *ngFor="let minute of minutes" value={{minute}}>{{minute}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="onNoClick()" mat-flat-button>Отмена</button>
+  <button (click)="onClick()" color="submit" mat-flat-button>Сохранить</button>
+</mat-dialog-actions>

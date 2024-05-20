@@ -6,9 +6,31 @@
     <input class="search-bar" type="text" matInput placeholder="Поиск проектов"/>
   </div>
 
-  <mat-icon class="notifications-icon" aria-hidden="false" matBadge="3" matBadgeColor="warn">notifications</mat-icon>
+  <button class="notifications-icon" mat-icon-button>
+    <mat-icon  aria-hidden="false" matBadge="3" matBadgeColor="warn">notifications</mat-icon>
+  </button>
   <!-- <mat-form-field class="minimal" appearance="outline" subscriptSizing="dynamic">
             <mat-icon matPrefix>search</mat-icon>
             <input matInput placeholder="Search Projects">
   </mat-form-field> -->
 </mat-toolbar>
+<div id="notifications">
+  <mat-list role="list" id="notifications-list">
+    <mat-list-item role="listitem" class="notification-item">
+      <p class="notification-name">Уведомление 1</p>
+      <p class="notification-date">13.05.2024</p>
+    </mat-list-item>
+    <mat-list-item role="listitem" class="notification-item">
+      <p class="notification-name">Уведомление 2</p>
+      <p class="notification-date">14.05.2024</p>
+    </mat-list-item>
+    <mat-list-item role="listitem" class="notification-item">
+      <p class="notification-name">Уведомление 3</p>
+      <p class="notification-date">15.05.2024</p>
+    </mat-list-item>
+    <mat-list-item role="listitem" class="notification-item">
+      <p class="notification-name">Уведомление 4</p>
+      <p class="notification-date">16.05.2024</p>
+    </mat-list-item>
+  </mat-list>
+</div>
