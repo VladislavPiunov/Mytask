@@ -23,7 +23,7 @@ namespace Mytask.API.Extensions.Auth
                 })
                 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
                 {
-                    opt.Authority = $"{keycloakOptions.Host}:{keycloakOptions.Port}/auth/realms/{keycloakOptions.Realm}/";
+                    opt.Authority = $"{keycloakOptions.Host}:{keycloakOptions.Port}/realms/{keycloakOptions.Realm}/";
                     opt.Audience = keycloakOptions.ClientId;
                     opt.RequireHttpsMetadata = false; // if ssl
                     opt.SaveToken = true;
@@ -33,7 +33,7 @@ namespace Mytask.API.Extensions.Auth
                         ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = $"{keycloakOptions.Host}:{keycloakOptions.Port}/auth/realms/{keycloakOptions.Realm}/"
+                        ValidIssuer = $"{keycloakOptions.Host}:{keycloakOptions.Port}/realms/{keycloakOptions.Realm}/"
                     };
                 });
 

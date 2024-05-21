@@ -38,11 +38,11 @@ namespace Mytask.API.Controllers
                 new KeyValuePair<string, string>("password", _keycloakOptions.Password)
             };
 
-            using var keycloakResponse = await client.PostAsync($"{_keycloakOptions.Host}:{_keycloakOptions.Port}/auth/realms/{_keycloakOptions.Realm}/protocol/openid-connect/token", new FormUrlEncodedContent(data));
+            using var keycloakResponse = await client.PostAsync($"{_keycloakOptions.Host}:{_keycloakOptions.Port}/realms/{_keycloakOptions.Realm}/protocol/openid-connect/token", new FormUrlEncodedContent(data));
 
             var accessToken = keycloakResponse.Content.ReadAs<TokenDto>()!.AccessToken;
 
-            var msg = new HttpRequestMessage(HttpMethod.Get, $"{_keycloakOptions.Host}:{_keycloakOptions.Port}/auth/admin/realms/{_keycloakOptions.Realm}/users");
+            var msg = new HttpRequestMessage(HttpMethod.Get, $"{_keycloakOptions.Host}:{_keycloakOptions.Port}/admin/realms/{_keycloakOptions.Realm}/users");
             msg.Headers.Authorization = AuthenticationHeaderValue.Parse("Bearer " + accessToken);
 
             using var response = await client.SendAsync(msg);

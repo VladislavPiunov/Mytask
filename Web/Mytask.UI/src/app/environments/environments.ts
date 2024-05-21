@@ -5,7 +5,7 @@ export const environment = {
 
 export const keycloak = {
     clientId: 'mytask-client',
-    clientSecret: 'GbQOu0qgq5aS9blYQsg96PileRe0j2WV',
+    clientSecret: '7wj1NxU5PCSC2ZJxtRUIahlHpOGqNVYR',
     realm: 'my_realm'
 }
 
@@ -17,5 +17,5 @@ export enum MyTaskApiPaths {
 }
 
 export enum KeyCloakPaths {
-    Token = '/auth/realms/my_realm/protocol/openid-connect/token',
+    Token = '/realms/my_realm/protocol/openid-connect/token',
 }
