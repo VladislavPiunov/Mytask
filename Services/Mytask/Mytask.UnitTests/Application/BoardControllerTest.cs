@@ -37,10 +37,9 @@ public class BoardControllerTest
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Board>), fakeBoardList);
     }
 
-    [Test]
-    public async Task Post_board_async_success()
+    [Theory]
+    public async Task Post_board_async_success(string fakeUserId)
     {
-        var fakeUserId = "1";
         var fakeBoard = GetBoardFake(fakeUserId);
 
         _identityServiceMock.Setup(x => x.GetUserIdentity()).Returns(fakeUserId);
@@ -56,7 +55,45 @@ public class BoardControllerTest
         Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Board).OwnerId, fakeUserId);
     }
-    
+
+    [Theory]
+    public async Task Put_board_async_success(string fakeUserId)
+    {
+        var fakeBoard = GetBoardFake(fakeUserId);
+
+        _identityServiceMock.Setup(x => x.GetUserIdentity()).Returns(fakeUserId);
+        _boardRepositoryMock.Setup(x => x.UpdateBoardAsync(It.IsAny<Board>())).Returns(Task.FromResult(fakeBoard));
+
+        var boardController = new BoardController(
+            _boardRepositoryMock.Object,
+            _identityServiceMock.Object
+        );
+
+        var actionResult = await boardController.UpdateBoardAsync(fakeBoard);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Board).OwnerId, fakeUserId);
+    }
+
+    [Theory]
+    public async Task Delete_board_async_success(string fakeUserId)
+    {
+        var fakeBoardId = "2";
+
+        _identityServiceMock.Setup(x => x.GetUserIdentity()).Returns(fakeUserId);
+        _boardRepositoryMock.Setup(x => x.DeleteBoardAsync(It.IsAny<string>())).Returns(Task.FromResult(true));
+
+        var boardController = new BoardController(
+            _boardRepositoryMock.Object,
+            _identityServiceMock.Object
+        );
+
+        var actionResult = await boardController.DeleteBoardAsync(fakeBoardId);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as bool?), true);
+    }
+
     private Board GetBoardFake(string fakeUserId)
     {
         return new Board(fakeUserId)

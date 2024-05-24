@@ -11,10 +11,15 @@ public class StageControllerTest
         _stageRepositoryMock = new Mock<IStageRepository>();
     }
 
-    [Test]
-    public async Task Get_stages_async_success()
+    [Datapoint]
+    public string firstUserId = "1";
+
+    [Datapoint]
+    public string secondUserId = "2";
+
+    [Theory]
+    public async Task Get_stages_async_success(string fakeUserId)
     {
-        var fakeUserId = "1";
         var fakeStagesList = GetStagesFake();
         var fakeBoard = GetBoardFake(fakeUserId, fakeStagesList.Select(x => x.Id).ToList());
         
@@ -35,14 +40,21 @@ public class StageControllerTest
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Stage>), fakeStagesList);
     }
 
-    [Test]
-    public async Task Post_stage_async_success()
+    [Datapoint]
+    public Stage firstStage = new Stage("test1", "test1")
     {
-        var fakeStage = new Stage("test", "test")
-        {
-            Id = ObjectId.GenerateNewId().ToString()
-        };
+        Id = ObjectId.GenerateNewId().ToString()
+    };
 
+    [Datapoint]
+    public Stage secondStage = new Stage("test2", "test2")
+    {
+        Id = ObjectId.GenerateNewId().ToString()
+    };
+
+    [Theory]
+    public async Task Post_stage_async_success(Stage fakeStage)
+    {
         _stageRepositoryMock.Setup(x => x.CreateStageAsync(It.IsAny<Stage>()))
             .Returns(Task.FromResult(fakeStage));
 
@@ -56,7 +68,47 @@ public class StageControllerTest
         Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Stage).Id, fakeStage.Id);
     }
-    
+
+    [Theory]
+    public async Task Put_stage_async_success(Stage fakeStage)
+    {
+        _stageRepositoryMock.Setup(x => x.UpdateStageAsync(It.IsAny<Stage>()))
+            .Returns(Task.FromResult(fakeStage));
+
+        var stageController = new StageController(
+            _boardRepositoryMock.Object,
+            _stageRepositoryMock.Object
+        );
+
+        var actionResult = await stageController.UpdateStageAsync(fakeStage);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Stage).Id, fakeStage.Id);
+    }
+
+    [Datapoint]
+    public string firstStageId = "1";
+
+    [Datapoint]
+    public string secondStageId = "2";
+
+    [Theory]
+    public async Task Delete_stage_async_success(string fakeStageId)
+    {
+        _stageRepositoryMock.Setup(x => x.DeleteStageAsync(It.IsAny<string>()))
+            .Returns(Task.FromResult(true));
+
+        var stageController = new StageController(
+            _boardRepositoryMock.Object,
+            _stageRepositoryMock.Object
+        );
+
+        var actionResult = await stageController.DeleteStageAsync(fakeStageId);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual(((ObjectResult)actionResult.Result).Value as bool?, true);
+    }
+
     private Board GetBoardFake(string fakeUserId, List<string> fakeStagesList)
     {
         return new Board(fakeUserId)

@@ -64,16 +64,26 @@ public class TaskControllerTest
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as List<Model.Task>).First().Executor, fakeUserId);
     }
 
-    [Test]
-    public async Task Post_board_async_success()
+    public static IEnumerable<Model.Task> testTasks()
     {
-        var fakeTask = new Model.Task("test", ObjectId.GenerateNewId().ToString(), ObjectId.GenerateNewId().ToString())
+        yield return new Model.Task("test", ObjectId.GenerateNewId().ToString(), ObjectId.GenerateNewId().ToString())
         {
             Description = "test description",
             Deadline = DateTime.Now,
             Executor = "test user"
         };
 
+        yield return new Model.Task("test2", ObjectId.GenerateNewId().ToString(), ObjectId.GenerateNewId().ToString())
+        {
+            Description = "test description2",
+            Deadline = DateTime.Now,
+            Executor = "test user2"
+        };
+    }
+
+    [TestCaseSource(nameof(testTasks))]
+    public async Task Post_task_async_success(Model.Task fakeTask)
+    {
         _taskRepositoryMock.Setup(x => x.CreateTaskAsync(It.IsAny<Model.Task>())).Returns(Task.FromResult(fakeTask));
 
         var taskController = new TaskController(_taskRepositoryMock.Object);
@@ -84,6 +94,34 @@ public class TaskControllerTest
         Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Model.Task), fakeTask);
     }
 
+    [TestCaseSource(nameof(testTasks))]
+    public async Task Put_task_async_success(Model.Task fakeTask)
+    {
+        _taskRepositoryMock.Setup(x => x.UpdateTaskAsync(It.IsAny<Model.Task>())).Returns(Task.FromResult(fakeTask));
+
+        var taskController = new TaskController(_taskRepositoryMock.Object);
+
+        var actionResult = await taskController.UpdateTaskAsync(fakeTask);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual((((ObjectResult)actionResult.Result).Value as Model.Task), fakeTask);
+    }
+
+    public static IEnumerable<string> testTasksIds()
+        => new List<string>{"1", "2"};
+
+    [TestCaseSource(nameof(testTasksIds))]
+    public async Task Delete_task_async_success(string fakeTaskId)
+    {
+        _taskRepositoryMock.Setup(x => x.DeleteTaskAsync(It.IsAny<string>())).Returns(Task.FromResult(true));
+
+        var taskController = new TaskController(_taskRepositoryMock.Object);
+
+        var actionResult = await taskController.DeleteTaskAsync(fakeTaskId);
+
+        Assert.AreEqual((actionResult.Result as OkObjectResult).StatusCode, (int)System.Net.HttpStatusCode.OK);
+        Assert.AreEqual(((ObjectResult)actionResult.Result).Value as bool?, true);
+    }
 
     private Board GetBoardFake(string fakeUserId)
     {

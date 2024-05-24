@@ -28,19 +28,19 @@ namespace Mytask.IntegrationTests.Scenarios.CommonSteps
             // Мокаем запрос на получение настроек для проверки токена
             await ExtEnvironment.MountebankClient.AddHttpImposterStubAsync(8484,
                 new HttpStub()
-                    .OnPathAndMethodEqual($"/auth/realms/my_realm/.well-known/openid-configuration", Method.Get)
+                    .OnPathAndMethodEqual($"/realms/my_realm/.well-known/openid-configuration", Method.Get)
                     .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetOpenidConfiguration("my_realm")), 0);
 
             // Мокаем запрос на получение сертификата для проверки токена
             await ExtEnvironment.MountebankClient.AddHttpImposterStubAsync(8484,
                 new HttpStub()
-                    .OnPathAndMethodEqual($"/auth/realms/my_realm/protocol/openid-connect/certs", Method.Get)
+                    .OnPathAndMethodEqual($"/realms/my_realm/protocol/openid-connect/certs", Method.Get)
                     .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetCertificates()), 1);
 
             // Мокаем запрос на получение токена 
             await ExtEnvironment.MountebankClient.AddHttpImposterStubAsync(8484,
                 new HttpStub()
-                    .OnPathAndMethodEqual($"/auth/realms/my_realm/protocol/openid-connect/token", Method.Post)
+                    .OnPathAndMethodEqual($"/realms/my_realm/protocol/openid-connect/token", Method.Post)
                     .ReturnsJson(HttpStatusCode.OK, KeyCloakResponseGenerator.GetToken("my_realm", new Dictionary<string, string>())));
         }
     }

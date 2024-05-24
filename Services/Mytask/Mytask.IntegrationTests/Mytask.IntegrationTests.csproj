@@ -45,4 +45,9 @@
     <ProjectReference Include="..\Mytask.API\Mytask.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scenarios\Stages\Steps\" />
+    <Folder Include="Scenarios\Tasks\Steps\" />
+  </ItemGroup>
+
 </Project>

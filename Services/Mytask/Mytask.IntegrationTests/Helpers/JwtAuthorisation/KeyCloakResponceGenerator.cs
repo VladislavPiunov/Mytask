@@ -14,12 +14,12 @@ internal static class KeyCloakResponseGenerator
     {
         return new OpenidConfiguration
         {
-            Issuer = $"http://localhost:8484/auth/realms/{realm}",
-            AuthorizationEndpoint = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/auth",
-            TokenEndpoint = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/token",
-            UserinfoEndpoint = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/userinfo",
-            JwksUri = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/certs",
-            CheckSessionIframe = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/login-status-iframe.html",
+            Issuer = $"http://localhost:8484/realms/{realm}",
+            AuthorizationEndpoint = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/auth",
+            TokenEndpoint = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/token",
+            UserinfoEndpoint = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/userinfo",
+            JwksUri = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/certs",
+            CheckSessionIframe = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/login-status-iframe.html",
             GrantTypesSupported = new List<string>
             {
                 "authorization_code",
@@ -73,7 +73,7 @@ internal static class KeyCloakResponseGenerator
                 "form_post"
             },
             RegistrationEndpoint =
-                $"http://localhost:8484/auth/realms/{realm}/clients-registrations/openid-connect",
+                $"http://localhost:8484/realms/{realm}/clients-registrations/openid-connect",
             TokenEndpointAuthMethodsSupported = new List<string>
             {
                 "private_key_jwt",
@@ -127,7 +127,7 @@ internal static class KeyCloakResponseGenerator
                 "S256"
             },
             TlsClientCertificateBoundAccessTokens = true,
-            IntrospectionEndpoint = $"http://localhost:8484/auth/realms/{realm}/protocol/openid-connect/token/introspect"
+            IntrospectionEndpoint = $"http://localhost:8484/realms/{realm}/protocol/openid-connect/token/introspect"
 
         };
     }

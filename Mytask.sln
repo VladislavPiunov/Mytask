@@ -30,6 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Calendar", "Calendar", "{A2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calendar.API", "Services\Calendar\Calendar.API\Calendar.API.csproj", "{17862D4E-E439-41DA-B927-CFC21CDE3D7A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jenkins", "Jenkins", "{106AFEBB-BB2C-45C2-A657-4CDD5A3C6557}"
+	ProjectSection(SolutionItems) = preProject
+		Jenkins\docker-compose.yml = Jenkins\docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +79,7 @@ Global
 		{C115DAC5-F45A-4F4A-96C3-140E2F808E87} = {560384F1-7769-43CA-B3B3-EAAF9102EFCC}
 		{A221E1B3-8F53-4D82-9AA6-A174701B9564} = {8194A3F3-8371-4505-B7FB-AC375E815F70}
 		{17862D4E-E439-41DA-B927-CFC21CDE3D7A} = {A221E1B3-8F53-4D82-9AA6-A174701B9564}
+		{106AFEBB-BB2C-45C2-A657-4CDD5A3C6557} = {9A5055BE-8397-4A5F-8986-E380C25B733E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8EC4FFF7-56DD-4F88-B919-5F287B1A5D39}
