@@ -10,7 +10,7 @@ services:
       - 50000:50000
     container_name: jenkins
     volumes:
-      - home/mytask/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - C:/Users/piunov_vn/projects/Mytask/jenkins_compose/jenkins_configuration:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
 
   agent:
@@ -21,4 +21,4 @@ services:
     expose:
       - 22
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=
+      - JENKINS_AGENT_SSH_PUBKEY= ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQD1eR9cWywVdQkudmQHoNZb4WIJB1AkU5K2RfLIH0SeUp/Tqd9cKSIJfAvJvZWI3d6EThRQVo6gmhIs7BoEOz5MqM9BK2inls8ejDoyuBrvQqEgnMLue7zwitXYeqK2IUAhRaXfg71/av1llo/FDdnYsUaeA6S3sSrCOl+Pu0F14NdtYdwgd72rDE4fMYz4soZqT+Jra07gaKkpATctCjji7Q5vaTO/9+BuGTORn417TDd58EYwS8TR2Ie0Pe4Lef+Q2waFr7p+z+6hU00UeioUKmbPmg3f9+crGu5TrxeeebUNzPba/G7rQqQ3z7uchEy9Bqoem5Ugel1izNn0CseQ7E5LA/KwBp+qovjOY4xCPw2tfzLGcQ6lihle0m1YCJ25dI565raO+TzVnyHRd5QgdQkWsq2CEJf6R/IFamfypKCOT6V3Gvn+hpxAPK3z0QRns2e57P6erEf96byOd9Uwsu1JrX0Q+HJ6FgCjkMSIfhHG+rd2IHhdTkw6e5mpViwI1sO6nVTxHtL6RuQLjuZc8EkL1h4Zs698F4Klpjyq0SvyscXD+eRInq3Oc1knLD6Kyv0szoqA/r6e1PElazVeG5THcOMP/jEzAWUl4AFsFJcIWrZCnkEzoAqHG8Sce3bHk1EVhePUVTLEyCOuW+WwkS8v5BSbkgeyfhV99d1UPw== jenkins@example.com
